@@ -7,7 +7,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DOCS = ROOT.parent / "documents"
+DOCS = ROOT.parent / "corpus"
 CHUNK, OVERLAP = 800, 120
 
 

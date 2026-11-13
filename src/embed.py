@@ -11,14 +11,14 @@ import urllib.request
 
 import numpy as np
 
-from onb_corpus.config import (
+from config import (
     embedding_model,
     embeddings_api_key,
     embeddings_base_url,
     embeddings_ca_cert,
 )
 
-log = logging.getLogger("onb_corpus")
+log = logging.getLogger("corpus_svc")
 BATCH = 16
 
 

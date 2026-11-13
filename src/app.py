@@ -15,11 +15,11 @@ from typing import Any
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from onb_corpus.auth import require_api_key
-from onb_corpus.config import index_path
-from onb_corpus.index import Index
+from auth import require_api_key
+from config import index_path
+from index import Index
 
-log = logging.getLogger("onb_corpus")
+log = logging.getLogger("corpus_svc")
 
 _index: Index | None = None
 _index_error: str | None = None
@@ -32,7 +32,7 @@ def _load_index() -> None:
     try:
         if not (path / "chunks.jsonl").is_file() or not (path / "vectors.npy").is_file():
             raise RuntimeError(
-                f"index missing at {path}; run: PYTHONPATH=src python -m onb_corpus build"
+                f"index missing at {path}; run: PYTHONPATH=src python src/__main__.py build"
             )
         loaded = Index(path, rerank=False)
         with _lock:

@@ -1,9 +1,9 @@
 """CLI and HTTP entrypoints.
 
-  PYTHONPATH=src python -m onb_corpus build
-  PYTHONPATH=src python -m onb_corpus search "why is bank proof required"
-  PYTHONPATH=src python -m onb_corpus recall
-  PYTHONPATH=src python -m onb_corpus serve
+  PYTHONPATH=src python src/__main__.py build
+  PYTHONPATH=src python src/__main__.py search "why is bank proof required"
+  PYTHONPATH=src python src/__main__.py recall
+  PYTHONPATH=src python src/__main__.py serve
 """
 
 from __future__ import annotations
@@ -14,20 +14,20 @@ import sys
 
 import uvicorn
 
-from onb_corpus.index import main as index_main
+from index import main as index_main
 
 
 def serve() -> None:
     host = "0.0.0.0"
     port = int(os.environ.get("PORT", "8081"))
-    uvicorn.run("onb_corpus.app:app", host=host, port=port, log_level="info")
+    uvicorn.run("app:app", host=host, port=port, log_level="info")
 
 
 def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv:
         print(
-            "usage: python -m onb_corpus {build,search,recall,serve} ...",
+            "usage: python src/__main__.py {build,search,recall,serve} ...",
             file=sys.stderr,
         )
         raise SystemExit(2)
@@ -36,7 +36,7 @@ def main(argv: list[str] | None = None) -> None:
         serve()
         return
     if argv[0] == "recall":
-        from onb_corpus.recall import main as recall_main
+        from recall import main as recall_main
 
         recall_main(argv[1:])
         return

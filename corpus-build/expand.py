@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DOCS = ROOT.parent / "documents"
+DOCS = ROOT.parent / "corpus"
 
 GENERATED_DIRS = [
     DOCS / "opinions",

@@ -7,11 +7,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
 
 DEFAULT_INDEX = ROOT / "index"
-DEFAULT_DOCS_ROOT = ROOT  # documents/ lives under the repo root
+DEFAULT_DOCS_ROOT = ROOT  # corpus/ lives under the repo root
 
 
 def _path(name: str, default: Path) -> Path:

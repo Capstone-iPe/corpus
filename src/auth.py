@@ -7,7 +7,7 @@ import hmac
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from onb_corpus.config import corpus_api_key
+from config import corpus_api_key
 
 _bearer = HTTPBearer(auto_error=False)
 

@@ -20,17 +20,17 @@ Primary Capstone numbers: **hit@4** and **hit@8** (reported as recall@k in the c
 ```bash
 cp .env.example .env   # EMBEDDINGS_* required
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-PYTHONPATH=src .venv/bin/python -m onb_corpus build
-PYTHONPATH=src .venv/bin/python -m onb_corpus recall --modes dense,keyword,hybrid --k 4,8
+.venv/bin/python src/__main__.py build
+.venv/bin/python src/__main__.py recall --modes dense,keyword,hybrid --k 4,8
 
 # optional chunking variants
-ONB_CHUNK=400 ONB_OVERLAP=60 PYTHONPATH=src .venv/bin/python -m onb_corpus build --out index-c400
-ONB_CHUNK=1200 ONB_OVERLAP=180 PYTHONPATH=src .venv/bin/python -m onb_corpus build --out index-c1200
-PYTHONPATH=src .venv/bin/python -m onb_corpus recall --index index-c400 --modes hybrid --out eval/results/recall-c400.json
-PYTHONPATH=src .venv/bin/python -m onb_corpus recall --index index-c1200 --modes hybrid --out eval/results/recall-c1200.json
+ONB_CHUNK=400 ONB_OVERLAP=60 .venv/bin/python src/__main__.py build --out index-c400
+ONB_CHUNK=1200 ONB_OVERLAP=180 .venv/bin/python src/__main__.py build --out index-c1200
+.venv/bin/python src/__main__.py recall --index index-c400 --modes hybrid --out eval/results/recall-c400.json
+.venv/bin/python src/__main__.py recall --index index-c1200 --modes hybrid --out eval/results/recall-c1200.json
 
 # optional rerank (pip install '.[rerank]' — not used on free Render)
-PYTHONPATH=src .venv/bin/python -m onb_corpus recall --modes hybrid_rerank --out eval/results/recall-rerank.json
+.venv/bin/python src/__main__.py recall --modes hybrid_rerank --out eval/results/recall-rerank.json
 ```
 
 ## Chunking

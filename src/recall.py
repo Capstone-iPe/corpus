@@ -1,7 +1,7 @@
 """Local recall@k over a fixed question set (Week 2 retrieval eval).
 
-  PYTHONPATH=src python -m onb_corpus recall
-  PYTHONPATH=src python -m onb_corpus recall --modes dense,keyword,hybrid --k 4,8
+  PYTHONPATH=src python src/__main__.py recall
+  PYTHONPATH=src python src/__main__.py recall --modes dense,keyword,hybrid --k 4,8
 """
 
 from __future__ import annotations
@@ -11,8 +11,8 @@ import json
 import time
 from pathlib import Path
 
-from onb_corpus.config import ROOT, index_path
-from onb_corpus.index import MODES, Index
+from config import ROOT, index_path
+from index import MODES, Index
 
 DEFAULT_QUESTIONS = ROOT / "eval" / "questions.json"
 DEFAULT_OUT = ROOT / "eval" / "results" / "recall.json"

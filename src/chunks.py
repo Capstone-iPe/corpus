@@ -75,7 +75,7 @@ def in_force(text: str, path: Path) -> bool:
 
 
 def load_chunks(corpus: Path) -> list[dict]:
-    documents = corpus / "documents"
+    documents = corpus / "corpus"
     files = sorted(path for path in documents.rglob("*.md") if path.is_file())
     rows = []
     for path in files:

@@ -9,9 +9,9 @@ import os
 from collections import defaultdict
 from pathlib import Path
 
-from onb_corpus.chunks import load_chunks, search_text, tokens
-from onb_corpus.config import docs_root, embedding_model, index_path
-from onb_corpus.embed import embed_texts
+from chunks import load_chunks, search_text, tokens
+from config import docs_root, embedding_model, index_path
+from embed import embed_texts
 
 RRF_K = 60
 POOL = 20
@@ -24,7 +24,7 @@ TIER_BONUS = {
     "handbook": 0.1,
 }
 
-log = logging.getLogger("onb_corpus")
+log = logging.getLogger("corpus_svc")
 
 
 def prefer_held(hits: list[dict], held_by_id: dict[str, dict]) -> list[dict]:
@@ -189,7 +189,7 @@ class Index:
 def _reranker():
     try:
         from sentence_transformers import CrossEncoder
-        from onb_corpus.chunks import RERANK_MODEL
+        from chunks import RERANK_MODEL
 
         # Local eval may download once; Render never installs this extra.
         local_only = os.environ.get("RERANK_LOCAL_ONLY", "").strip().lower() in {

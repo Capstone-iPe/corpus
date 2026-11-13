@@ -1,0 +1,25 @@
+# Optional Blueprint for Capstone-iPe/onb-corpus.
+# Secrets (API keys, CA PEM) stay sync: false — set them in the Dashboard / MCP.
+
+services:
+  - type: web
+    name: onb-corpus
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    autoDeploy: true
+    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build
+    startCommand: PYTHONPATH=src python -m onb_corpus serve
+    healthCheckPath: /health
+    envVars:
+      - key: EMBEDDING_MODEL
+        value: bge-small-en-v1.5
+      - key: EMBEDDINGS_BASE_URL
+        value: https://103.42.50.41:1035/v1
+      - key: EMBEDDINGS_API_KEY
+        sync: false
+      - key: EMBEDDINGS_CA_PEM
+        sync: false
+      - key: CORPUS_API_KEY
+        sync: false

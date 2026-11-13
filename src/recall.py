@@ -1,4 +1,4 @@
-"""Local recall@k over a fixed question set (Week 2 retrieval eval).
+"""Local recall@k over a fixed question set (retrieval eval).
 
   PYTHONPATH=src python src/__main__.py recall
   PYTHONPATH=src python src/__main__.py recall --modes dense,keyword,hybrid --k 4,8

@@ -123,9 +123,9 @@ CORPUS_SEARCH_URL=https://onb-corpus.onrender.com
 CORPUS_API_KEY=…
 ```
 
-## Week 2 — local recall (not required for E2E)
+## Local recall (not required for E2E)
 
-Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [eval/week2-retrieval.md](eval/week2-retrieval.md).
+Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [eval/retrieval.md](eval/retrieval.md).
 
 ```bash
 .venv/bin/python -m onb_corpus build

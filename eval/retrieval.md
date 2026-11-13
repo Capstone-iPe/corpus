@@ -1,4 +1,4 @@
-# Week 2 — retrieval experiments (local)
+# Retrieval experiments (local)
 
 Scored apart from shop E2E / replay. Product search on Render stays **hybrid without torch**. These runs use the Capstone hosted embeddings API (`bge-small-en-v1.5`) against a local index.
 
@@ -61,7 +61,7 @@ ONB_CHUNK=1200 ONB_OVERLAP=180 .venv/bin/python -m onb_corpus build --out index-
 | Surface | Setting |
 |---|---|
 | Render `onb-corpus` | 800/120 index from deploy build; hybrid; no rerank |
-| Local Week 2 eval | this doc + `results/*.json` |
+| Local recall eval | this doc + `results/*.json` |
 | Copilot | unchanged — `POST /v1/search` only |
 
 Raw runs: [`results/`](results/).

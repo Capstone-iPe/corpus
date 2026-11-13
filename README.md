@@ -16,4 +16,6 @@ Policy and supporting documents the onboarding copilot retrieves for citation an
 | `documents/handbook/` | Reviewer handbook |
 | `documents/not-in-force/` | Rejected drafts — discard if retrieved |
 
-This repo is a **git submodule** in `Capstone-iPe/analysis` (path `corpus`) and `Capstone-iPe/copilot-svc` (path `corpus`). Generators that expand memos live in the analysis repo, not here.
+`corpus-build/` regenerates the bulk IRAC memos. The indexer in `copilot-svc` only reads `documents/**/*.md`.
+
+This repo is a **git submodule** in `Capstone-iPe/copilot-svc` (path `corpus`). Analysis links here; it does not vendor the pack.

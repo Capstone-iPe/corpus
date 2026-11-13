@@ -19,3 +19,38 @@ Policy and supporting documents the onboarding copilot retrieves for citation an
 `corpus-build/` regenerates the bulk IRAC memos. The indexer in `copilot-svc` only reads `documents/**/*.md`.
 
 This repo is a **git submodule** in `Capstone-iPe/copilot-svc` (path `corpus`). Analysis links here; it does not vendor the pack.
+
+## Clone
+
+```bash
+git clone https://github.com/Capstone-iPe/corpus.git
+cd corpus
+```
+
+## Regenerate memos
+
+Does not overwrite handwritten POL / ANX / CIR / SOP / FAQ-001.
+
+```bash
+python3 corpus-build/expand.py
+python3 corpus-build/stats.py
+```
+
+Then commit and push this repo:
+
+```bash
+git add -A
+git commit -m "Rebuild generated memos"
+git push
+```
+
+Bump the submodule in `copilot-svc` and rebuild the search index:
+
+```bash
+cd /path/to/copilot-svc
+git submodule update --remote corpus
+git add corpus
+git commit -m "Bump corpus submodule"
+git push
+PYTHONPATH=src .venv/bin/python -m copilot.corpus.index_corpus build
+```

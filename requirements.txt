@@ -1,0 +1,6 @@
+numpy
+rank-bm25
+sentence-transformers
+fastapi
+uvicorn
+python-dotenv

@@ -1,8 +1,8 @@
-# iPe retrieval corpus
+# onb-corpus
 
-Policy and supporting documents the onboarding copilot retrieves for citation and explanation. ONB still decides fields, files, and the verdict.
+Policy pack and search API for the iPe onboarding copilot. ONB still decides fields, files, and the verdict; this service only returns passages for citation and explanation.
 
-**500 documents** under `documents/` (Track B range 500–2,000).
+**500 documents** under `documents/` (Track B range 500–2,000). Generators live in `corpus-build/`. The indexer only reads `documents/**/*.md`.
 
 | Folder | What |
 |---|---|
@@ -16,41 +16,72 @@ Policy and supporting documents the onboarding copilot retrieves for citation an
 | `documents/handbook/` | Reviewer handbook |
 | `documents/not-in-force/` | Rejected drafts — discard if retrieved |
 
-`corpus-build/` regenerates the bulk IRAC memos. The indexer in `copilot-svc` only reads `documents/**/*.md`.
-
-This repo is a **git submodule** in `Capstone-iPe/copilot-svc` (path `corpus`). Analysis links here; it does not vendor the pack.
+`copilot-svc` calls this service over HTTP (`CORPUS_SEARCH_URL` + Bearer `CORPUS_API_KEY`). It does not vendor the pack.
 
 ## Clone
 
 ```bash
-git clone https://github.com/Capstone-iPe/corpus.git
-cd corpus
+git clone https://github.com/Capstone-iPe/onb-corpus.git
+cd onb-corpus
 ```
 
-## Regenerate memos
+## Config
 
-Does not overwrite handwritten POL / ANX / CIR / SOP / FAQ-001.
+```bash
+cp .env.example .env
+# fill EMBEDDINGS_API_KEY and CORPUS_API_KEY
+# place vm02-ca.crt next to the repo (or set EMBEDDINGS_CA_CERT)
+```
+
+| Variable | Purpose |
+|---|---|
+| `EMBEDDINGS_*` / `EMBEDDING_MODEL` | Hosted embeddings for build + query |
+| `CORPUS_API_KEY` | Bearer secret for `/v1/*` (same value in copilot-svc) |
+| `INDEX_PATH` | Optional (default `index`) |
+| `PORT` | HTTP port (default `8081`; Render sets `PORT`) |
+
+## Setup
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+```
+
+## Build the index
+
+```bash
+PYTHONPATH=src .venv/bin/python -m onb_corpus build
+PYTHONPATH=src .venv/bin/python -m onb_corpus search "why is bank proof required"
+```
+
+## Run the search API
+
+```bash
+PYTHONPATH=src .venv/bin/python -m onb_corpus serve
+```
+
+Binds `0.0.0.0:$PORT` (default 8081).
+
+```bash
+curl -s http://127.0.0.1:8081/health
+
+curl -s http://127.0.0.1:8081/v1/search \
+  -H "Authorization: Bearer $CORPUS_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"why is bank proof required","k":4}'
+```
+
+| Route | Auth |
+|---|---|
+| `GET /health` | open |
+| `GET /v1/document-ids` | Bearer |
+| `POST /v1/search` | Bearer |
+
+## Regenerate memos
 
 ```bash
 python3 corpus-build/expand.py
 python3 corpus-build/stats.py
 ```
 
-Then commit and push this repo:
-
-```bash
-git add -A
-git commit -m "Rebuild generated memos"
-git push
-```
-
-Bump the submodule in `copilot-svc` and rebuild the search index:
-
-```bash
-cd /path/to/copilot-svc
-git submodule update --remote corpus
-git add corpus
-git commit -m "Bump corpus submodule"
-git push
-PYTHONPATH=src .venv/bin/python -m copilot.corpus.index_corpus build
-```
+Then rebuild the index and redeploy/restart the API.

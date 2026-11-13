@@ -7,4 +7,4 @@ python3 corpus-build/expand.py
 python3 corpus-build/stats.py
 ```
 
-Does not overwrite handwritten POL / ANX / CIR / SOP / FAQ-001. Commit and push this repo, then bump the submodule pointer in `copilot-svc` and rebuild the index (see the repo root README).
+Does not overwrite handwritten POL / ANX / CIR / SOP / FAQ-001. Commit and push, rebuild the search index (`python -m onb_corpus build`), then restart the API.

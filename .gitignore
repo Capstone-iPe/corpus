@@ -1,3 +1,8 @@
 .DS_Store
+.venv/
 __pycache__/
+.idea/
+.env
+*.crt
+index/
 corpus-build/stats.json

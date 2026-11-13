@@ -46,13 +46,6 @@ def build(corpus: Path, out: Path) -> None:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
     np.save(out / "vectors.npy", vectors)
-    try:
-        from sentence_transformers import CrossEncoder
-
-        CrossEncoder(RERANK_MODEL)
-        print(f"cached reranker {RERANK_MODEL}")
-    except Exception as exc:
-        print(f"reranker not cached ({exc})")
     documents = len({row["path"] for row in rows})
     held_back = sum(1 for row in rows if not row["in_force"])
     print(f"documents {documents}")

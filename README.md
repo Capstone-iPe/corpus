@@ -85,6 +85,7 @@ Web service on the **iPe** workspace (free plan is fine for Capstone):
 - **Start:** `PYTHONPATH=src python -m onb_corpus serve`
 - **Health check:** `/health`
 - **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_PEM` (full PEM text), `EMBEDDING_MODEL`, `CORPUS_API_KEY`
+- Free plan is 512Mi — keep `sentence-transformers` optional (`pip install '.[rerank]'` locally only).
 
 Point `copilot-svc` at the public URL with the same `CORPUS_API_KEY`:
 

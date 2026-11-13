@@ -37,7 +37,8 @@ async def lifespan(_app: FastAPI):
         raise RuntimeError(
             f"index missing at {path}; run: PYTHONPATH=src python -m onb_corpus build"
         )
-    _index = Index(path)
+    # Free Render instances are 512Mi — skip the optional cross-encoder.
+    _index = Index(path, rerank=False)
     log.info("loaded index from %s (%s in-force ids)", path, len(_index.document_ids))
     yield
     _index = None

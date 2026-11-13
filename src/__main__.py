@@ -1,9 +1,9 @@
 """CLI and HTTP entrypoints.
 
-  PYTHONPATH=src python src/__main__.py build
-  PYTHONPATH=src python src/__main__.py search "why is bank proof required"
-  PYTHONPATH=src python src/__main__.py recall
-  PYTHONPATH=src python src/__main__.py serve
+  PYTHONPATH=src python -m onb_corpus build
+  PYTHONPATH=src python -m onb_corpus search "why is bank proof required"
+  PYTHONPATH=src python -m onb_corpus recall
+  PYTHONPATH=src python -m onb_corpus serve
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv:
         print(
-            "usage: python src/__main__.py {build,search,recall,serve} ...",
+            "usage: python -m onb_corpus {build,search,recall,serve} ...",
             file=sys.stderr,
         )
         raise SystemExit(2)

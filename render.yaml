@@ -9,8 +9,8 @@ services:
     region: oregon
     branch: main
     autoDeploy: true
-    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python src/__main__.py build
-    startCommand: PYTHONPATH=src python src/__main__.py serve
+    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build
+    startCommand: PYTHONPATH=src python -m onb_corpus serve
     healthCheckPath: /health
     # Free = 512Mi. Do not add sentence-transformers / torch.
     envVars:

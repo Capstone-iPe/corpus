@@ -50,14 +50,14 @@ python3 -m venv .venv
 ## Build the index
 
 ```bash
-.venv/bin/python src/__main__.py build
-.venv/bin/python src/__main__.py search "why is bank proof required"
+.venv/bin/python -m onb_corpus build
+.venv/bin/python -m onb_corpus search "why is bank proof required"
 ```
 
 ## Run the search API
 
 ```bash
-.venv/bin/python src/__main__.py serve
+.venv/bin/python -m onb_corpus serve
 ```
 
 Binds `0.0.0.0:$PORT` (default 8081).
@@ -106,8 +106,8 @@ Live URL: **https://onb-corpus.onrender.com** (iPe workspace, free plan).
 
 | When | What runs |
 |---|---|
-| **Deploy / push to `main`** | Build: `pip install -r requirements.txt && PYTHONPATH=src python src/__main__.py build` (re-embeds the pack via the Capstone embeddings API, writes `index/`). Then start: `PYTHONPATH=src python src/__main__.py serve`. |
-| **Cold start** (free spin-up after idle) | **Start only** — loads the index already built into the deploy slug. Does **not** re-run `corpus build` or call embeddings for the whole corpus. |
+| **Deploy / push to `main`** | Build: `pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build` (re-embeds the pack via the Capstone embeddings API, writes `index/`). Then start: `PYTHONPATH=src python -m onb_corpus serve`. |
+| **Cold start** (free spin-up after idle) | **Start only** — loads the index already built into the deploy slug. Does **not** re-run build or call embeddings for the whole corpus. |
 
 So: rebuild happens on **deploy**, not every wake-up. Changing documents or chunking needs a new deploy (or a manual rebuild + restart locally).
 
@@ -127,8 +127,8 @@ CORPUS_API_KEY=…
 Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [eval/week2-retrieval.md](eval/week2-retrieval.md).
 
 ```bash
-.venv/bin/python src/__main__.py build
-.venv/bin/python src/__main__.py recall --modes dense,keyword,hybrid --k 4,8
+.venv/bin/python -m onb_corpus build
+.venv/bin/python -m onb_corpus recall --modes dense,keyword,hybrid --k 4,8
 # optional: pip install '.[rerank]' then --modes hybrid_rerank
 ```
 

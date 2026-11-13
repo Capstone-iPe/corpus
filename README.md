@@ -128,8 +128,8 @@ CORPUS_API_KEY=…
 Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [eval/retrieval.md](eval/retrieval.md).
 
 ```bash
-.venv/bin/python -m onb_corpus build
-.venv/bin/python -m onb_corpus recall --modes dense,keyword,hybrid --k 4,8
+PYTHONPATH=src .venv/bin/python -m onb_corpus build
+PYTHONPATH=src .venv/bin/python eval/recall.py --modes dense,keyword,hybrid --k 4,8
 # optional: pip install '.[rerank]' then --modes hybrid_rerank
 ```
 

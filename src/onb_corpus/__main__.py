@@ -22,7 +22,7 @@ def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv:
         print(
-            "usage: python -m onb_corpus {build,search,recall,serve} ...",
+            "usage: python -m onb_corpus {build,search,serve} ...",
             file=sys.stderr,
         )
         raise SystemExit(2)
@@ -31,10 +31,11 @@ def main(argv: list[str] | None = None) -> None:
         serve()
         return
     if argv[0] == "recall":
-        from recall import main as recall_main
-
-        recall_main(argv[1:])
-        return
+        print(
+            "recall moved to eval/: PYTHONPATH=src python eval/recall.py …",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
     from index import main as index_main
 
     sys.argv = [sys.argv[0], *argv]

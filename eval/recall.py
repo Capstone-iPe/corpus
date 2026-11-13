@@ -1,18 +1,22 @@
-"""Local recall@k over a fixed question set (retrieval eval).
+"""Local recall@k over the fixed question set (not part of the search service).
 
-  PYTHONPATH=src python src/__main__.py recall
-  PYTHONPATH=src python src/__main__.py recall --modes dense,keyword,hybrid --k 4,8
+  PYTHONPATH=src python eval/recall.py
+  PYTHONPATH=src python eval/recall.py --modes dense,keyword,hybrid --k 4,8
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 import time
 from pathlib import Path
 
-from config import ROOT, index_path
-from index import MODES, Index
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from config import index_path  # noqa: E402
+from index import MODES, Index  # noqa: E402
 
 DEFAULT_QUESTIONS = ROOT / "eval" / "questions.json"
 DEFAULT_OUT = ROOT / "eval" / "results" / "recall.json"
@@ -107,19 +111,12 @@ def run(
     for mode in modes:
         print(f"scoring mode={mode} …")
         block = score_mode(loaded, questions, mode, ks)
-        summary = {
-            "mode": mode,
-            "hit_rate": block["hit_rate"],
-            "mean_recall": block["mean_recall"],
-            "seconds": block["seconds"],
-        }
         print(
             f"  hit@4={block['hit_rate'].get('4')} hit@8={block['hit_rate'].get('8')} "
             f"recall@4={block['mean_recall'].get('4')} recall@8={block['mean_recall'].get('8')} "
             f"({block['seconds']}s)"
         )
         results["modes"].append(block)
-        _ = summary
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"wrote {out}")

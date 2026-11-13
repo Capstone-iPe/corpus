@@ -9,7 +9,7 @@
     {
       "mode": "dense",
       "n": 24,
-      "seconds": 3.99,
+      "seconds": 4.43,
       "hit_rate": {
         "4": 0.7917,
         "8": 0.8333
@@ -1297,7 +1297,7 @@
     {
       "mode": "hybrid",
       "n": 24,
-      "seconds": 3.45,
+      "seconds": 4.18,
       "hit_rate": {
         "4": 0.9583,
         "8": 1.0

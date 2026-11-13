@@ -15,7 +15,7 @@ rerank = ["sentence-transformers"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-py-modules = ["app", "auth", "chunks", "config", "embed", "index", "recall"]
+py-modules = ["app", "auth", "chunks", "config", "embed", "index"]
 
 [build-system]
 requires = ["setuptools>=68"]

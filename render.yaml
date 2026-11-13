@@ -1,6 +1,6 @@
 # Optional Blueprint for Capstone-iPe/onb-corpus.
 # Secrets stay sync: false — set them in the Dashboard / MCP.
-# CA file is repo-root vm02-ca.crt (EMBEDDINGS_CA_CERT).
+# Upload Secret File vm02-ca.crt (Render mounts it at /etc/secrets/vm02-ca.crt).
 
 services:
   - type: web
@@ -20,7 +20,7 @@ services:
       - key: EMBEDDINGS_BASE_URL
         value: https://103.42.50.41:1035/v1
       - key: EMBEDDINGS_CA_CERT
-        value: vm02-ca.crt
+        value: /etc/secrets/vm02-ca.crt
       - key: EMBEDDINGS_API_KEY
         sync: false
       - key: CORPUS_API_KEY

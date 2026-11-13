@@ -31,8 +31,20 @@ def embeddings_base_url() -> str:
 
 
 def embeddings_ca_cert() -> Path:
-    """Path to the Capstone embeddings CA file (shipped as vm02-ca.crt)."""
-    return _path("EMBEDDINGS_CA_CERT", ROOT / "vm02-ca.crt")
+    """Path to the Capstone embeddings CA file.
+
+    Local default: repo-root vm02-ca.crt (gitignored).
+    On Render: Secret File at /etc/secrets/vm02-ca.crt
+    (set EMBEDDINGS_CA_CERT=/etc/secrets/vm02-ca.crt).
+    """
+    raw = os.environ.get("EMBEDDINGS_CA_CERT", "").strip()
+    if raw:
+        path = Path(raw).expanduser()
+        return path if path.is_absolute() else ROOT / path
+    render_secret = Path("/etc/secrets/vm02-ca.crt")
+    if render_secret.is_file():
+        return render_secret
+    return ROOT / "vm02-ca.crt"
 
 
 def embedding_model() -> str:

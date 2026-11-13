@@ -31,6 +31,17 @@ def embeddings_base_url() -> str:
 
 
 def embeddings_ca_cert() -> Path:
+    """Path to the CA file. On Render, set EMBEDDINGS_CA_PEM to the PEM text."""
+    pem = os.environ.get("EMBEDDINGS_CA_PEM", "").strip()
+    if pem:
+        path = Path(os.environ.get("EMBEDDINGS_CA_CERT", "/tmp/vm02-ca.crt"))
+        if not path.is_absolute():
+            path = ROOT / path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        text = pem if pem.endswith("\n") else pem + "\n"
+        if not path.is_file() or path.read_text(encoding="utf-8") != text:
+            path.write_text(text, encoding="utf-8")
+        return path
     return _path("EMBEDDINGS_CA_CERT", ROOT / "vm02-ca.crt")
 
 

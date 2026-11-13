@@ -77,6 +77,22 @@ curl -s http://127.0.0.1:8081/v1/search \
 | `GET /v1/document-ids` | Bearer |
 | `POST /v1/search` | Bearer |
 
+## Render
+
+Web service on the **iPe** workspace (free plan is fine for Capstone):
+
+- **Build:** `pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build`
+- **Start:** `PYTHONPATH=src python -m onb_corpus serve`
+- **Health check:** `/health`
+- **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_PEM` (full PEM text), `EMBEDDING_MODEL`, `CORPUS_API_KEY`
+
+Point `copilot-svc` at the public URL with the same `CORPUS_API_KEY`:
+
+```bash
+CORPUS_SEARCH_URL=https://onb-corpus-xxxx.onrender.com
+CORPUS_API_KEY=…
+```
+
 ## Regenerate memos
 
 ```bash

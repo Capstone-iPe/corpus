@@ -4,7 +4,7 @@ Scored apart from shop E2E / replay. Product search on Render stays **hybrid wit
 
 ## Fixed question set
 
-[`eval/questions.json`](../eval/questions.json) — **24** why/cite queries with gold `document_id` lists (policy, annex, circular, FAQ). Shop gold in analysis `eval/` is not used here and is not indexed.
+[`questions.json`](questions.json) — **24** why/cite queries with gold `document_id` lists (policy, annex, circular, FAQ). Shop gold in analysis `eval/` is not used here and is not indexed.
 
 ## Metrics
 
@@ -61,7 +61,7 @@ PYTHONPATH=src .venv/bin/python -m onb_corpus recall --modes hybrid_rerank --out
 | Surface | Setting |
 |---|---|
 | Render `onb-corpus` | 800/120 index from deploy build; hybrid; no rerank |
-| Local Week 2 eval | this doc + `eval/results/*.json` |
+| Local Week 2 eval | this doc + `results/*.json` |
 | Copilot | unchanged — `POST /v1/search` only |
 
-Raw runs: [`eval/results/`](../eval/results/).
+Raw runs: [`results/`](results/).

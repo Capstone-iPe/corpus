@@ -1,5 +1,6 @@
 # Optional Blueprint for Capstone-iPe/onb-corpus.
-# Secrets (API keys, CA PEM) stay sync: false — set them in the Dashboard / MCP.
+# Secrets stay sync: false — set them in the Dashboard / MCP.
+# CA file is repo-root vm02-ca.crt (EMBEDDINGS_CA_CERT).
 
 services:
   - type: web
@@ -18,9 +19,9 @@ services:
         value: bge-small-en-v1.5
       - key: EMBEDDINGS_BASE_URL
         value: https://103.42.50.41:1035/v1
+      - key: EMBEDDINGS_CA_CERT
+        value: vm02-ca.crt
       - key: EMBEDDINGS_API_KEY
-        sync: false
-      - key: EMBEDDINGS_CA_PEM
         sync: false
       - key: CORPUS_API_KEY
         sync: false

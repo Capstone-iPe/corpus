@@ -30,7 +30,7 @@ cd onb-corpus
 ```bash
 cp .env.example .env
 # fill EMBEDDINGS_API_KEY and CORPUS_API_KEY
-# place vm02-ca.crt next to the repo (or set EMBEDDINGS_CA_CERT)
+# vm02-ca.crt is in the repo; override with EMBEDDINGS_CA_CERT if needed
 ```
 
 | Variable | Purpose |
@@ -112,7 +112,8 @@ Live URL: **https://onb-corpus.onrender.com** (iPe workspace, free plan).
 So: rebuild happens on **deploy**, not every wake-up. Changing documents or chunking needs a new deploy (or a manual rebuild + restart locally).
 
 - **Health check:** `/health`
-- **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_PEM` (full PEM text), `EMBEDDING_MODEL=bge-small-en-v1.5`, `CORPUS_API_KEY`
+- **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_CERT=vm02-ca.crt`, `EMBEDDING_MODEL=bge-small-en-v1.5`, `CORPUS_API_KEY`
+- **CA file:** repo-root `vm02-ca.crt` (not an env PEM blob). Delete any leftover `EMBEDDINGS_CA_PEM` in the Dashboard.
 - Free plan is 512Mi: no torch / sentence-transformers; mmap vectors; compact keyword index; `/health` answers before the index finishes loading.
 
 Point `copilot-svc` at the public URL with the same `CORPUS_API_KEY`:

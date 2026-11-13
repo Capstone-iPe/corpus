@@ -4,6 +4,7 @@ __pycache__/
 .idea/
 .env
 *.crt
+!vm02-ca.crt
 index/
 corpus-build/stats.json
 index-c400/

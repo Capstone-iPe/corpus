@@ -12,6 +12,7 @@ services:
     buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build
     startCommand: PYTHONPATH=src python -m onb_corpus serve
     healthCheckPath: /health
+    # Free = 512Mi. Do not add sentence-transformers / torch.
     envVars:
       - key: EMBEDDING_MODEL
         value: bge-small-en-v1.5

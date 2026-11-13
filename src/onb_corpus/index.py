@@ -5,9 +5,10 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+from collections import defaultdict
 from pathlib import Path
 
-from onb_corpus.chunks import RERANK_MODEL, load_chunks, search_text, tokens
+from onb_corpus.chunks import load_chunks, search_text, tokens
 from onb_corpus.config import docs_root, embedding_model, index_path
 from onb_corpus.embed import embed_texts
 
@@ -25,14 +26,9 @@ TIER_BONUS = {
 log = logging.getLogger("onb_corpus")
 
 
-def prefer_held(hits: list[dict], rows: list[dict]) -> list[dict]:
+def prefer_held(hits: list[dict], held_by_id: dict[str, dict]) -> list[dict]:
     """Use the chunk that carries the held line when the same document has one."""
-    held: dict[str, dict] = {}
-    for row in rows:
-        document_id = str(row.get("document_id") or "")
-        if document_id and document_id not in held and "## Held" in str(row.get("text") or ""):
-            held[document_id] = row
-    return [held.get(str(row.get("document_id") or ""), row) for row in hits]
+    return [held_by_id.get(str(row.get("document_id") or ""), row) for row in hits]
 
 
 def build(corpus: Path, out: Path) -> None:
@@ -40,7 +36,10 @@ def build(corpus: Path, out: Path) -> None:
 
     rows = load_chunks(corpus)
     print(f"embedding {len(rows)} chunks with {embedding_model()}")
-    vectors = embed_texts([search_text(row) for row in rows])
+    # Stream texts so we do not hold two full copies while embedding.
+    texts = [search_text(row) for row in rows]
+    vectors = embed_texts(texts)
+    del texts
     out.mkdir(parents=True, exist_ok=True)
     with (out / "chunks.jsonl").open("w", encoding="utf-8") as handle:
         for row in rows:
@@ -62,7 +61,8 @@ def load_index(index: Path) -> tuple[list[dict], object]:
         for line in (index / "chunks.jsonl").read_text(encoding="utf-8").splitlines()
         if line
     ]
-    vectors = np.load(index / "vectors.npy")
+    # mmap avoids a second full copy of the matrix in RAM.
+    vectors = np.load(index / "vectors.npy", mmap_mode="r")
     if len(rows) != len(vectors):
         raise RuntimeError("chunks.jsonl and vectors.npy are different lengths")
     return rows, vectors
@@ -100,25 +100,51 @@ def one_per_document(rows: list[dict], k: int) -> list[dict]:
     return found
 
 
+def _inverted(rows: list[dict]) -> dict[str, list[int]]:
+    """Compact term → row-id posting lists (lighter than BM25Okapi on 512Mi)."""
+    postings: dict[str, list[int]] = defaultdict(list)
+    for row_id, row in enumerate(rows):
+        seen: set[str] = set()
+        for term in tokens(search_text(row)):
+            if term in seen:
+                continue
+            seen.add(term)
+            postings[term].append(row_id)
+    return dict(postings)
+
+
+def _keyword_order(query: str, postings: dict[str, list[int]], n_rows: int) -> list[int]:
+    scores = [0.0] * n_rows
+    for term in tokens(query):
+        for row_id in postings.get(term, ()):
+            scores[row_id] += 1.0
+    return sorted(range(n_rows), key=lambda i: scores[i], reverse=True)
+
+
 class Index:
     """In-process hybrid search over a built index."""
 
-    def __init__(self, index: Path | None = None, rerank: bool = True) -> None:
-        from rank_bm25 import BM25Okapi
+    def __init__(self, index: Path | None = None, rerank: bool = False) -> None:
         import numpy as np
 
         path = index or index_path()
         self.rows, self.vectors = load_index(path)
-        self.keyword = BM25Okapi([tokens(search_text(row)) for row in self.rows])
+        self.postings = _inverted(self.rows)
         self.bonus = tier_bonus(self.rows)
         self.document_ids = {row["document_id"] for row in self.rows if row["in_force"]}
+        held: dict[str, dict] = {}
+        for row in self.rows:
+            doc_id = str(row.get("document_id") or "")
+            if doc_id and doc_id not in held and "## Held" in str(row.get("text") or ""):
+                held[doc_id] = row
+        self.held_by_id = held
         self.reranker = _reranker() if rerank else None
         self.np = np
 
     def search(self, query: str, k: int = 4) -> list[dict]:
         query_vector = embed_texts([query])[0]
         vector_order = self.np.argsort(-(self.vectors @ query_vector)).tolist()
-        keyword_order = self.np.argsort(-self.keyword.get_scores(tokens(query))).tolist()
+        keyword_order = _keyword_order(query, self.postings, len(self.rows))
         pool = []
         for row_id in merge(vector_order, keyword_order, self.bonus):
             row = self.rows[row_id]
@@ -131,7 +157,7 @@ class Index:
             order = sorted(range(len(pool)), key=lambda i: float(scores[i]), reverse=True)
             pool = [pool[i] for i in order]
         found = one_per_document(pool, k)
-        found = prefer_held(found, self.rows)
+        found = prefer_held(found, self.held_by_id)
         log.info("search %s", [row["document_id"] for row in found])
         return found
 
@@ -139,6 +165,7 @@ class Index:
 def _reranker():
     try:
         from sentence_transformers import CrossEncoder
+        from onb_corpus.chunks import RERANK_MODEL
 
         return CrossEncoder(RERANK_MODEL, local_files_only=True)
     except Exception as exc:
@@ -163,7 +190,7 @@ def main() -> None:
     if args.command == "build":
         build(args.corpus, args.out)
         return
-    for row in Index(args.index).search(args.query, args.k):
+    for row in Index(args.index, rerank=False).search(args.query, args.k):
         print(f"{row['document_id']}  {row['path']}")
 
 

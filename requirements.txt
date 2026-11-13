@@ -1,7 +1,4 @@
 numpy
-rank-bm25
 fastapi
 uvicorn
 python-dotenv
-# Optional local reranker (pulls torch). Not installed on Render free tier.
-# sentence-transformers

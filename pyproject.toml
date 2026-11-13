@@ -5,7 +5,6 @@ description = "iPe onboarding policy corpus and search API"
 requires-python = ">=3.11"
 dependencies = [
     "numpy",
-    "rank-bm25",
     "fastapi",
     "uvicorn",
     "python-dotenv",

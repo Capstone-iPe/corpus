@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import math
+import os
 import re
 from pathlib import Path
 
-CHUNK = 800
-OVERLAP = 120
+# Defaults match Assignment 05 / Track B pack sizing. Override for local experiments.
+CHUNK = int(os.environ.get("ONB_CHUNK", "800"))
+OVERLAP = int(os.environ.get("ONB_OVERLAP", "120"))
 RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 TOKEN = re.compile(r"[a-z0-9§]+(?:-[a-z0-9§]+)*")
 HEADER_ROW = re.compile(

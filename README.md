@@ -62,37 +62,77 @@ PYTHONPATH=src .venv/bin/python -m onb_corpus serve
 
 Binds `0.0.0.0:$PORT` (default 8081).
 
-```bash
-curl -s http://127.0.0.1:8081/health
-
-curl -s http://127.0.0.1:8081/v1/search \
-  -H "Authorization: Bearer $CORPUS_API_KEY" \
-  -H "content-type: application/json" \
-  -d '{"query":"why is bank proof required","k":4}'
-```
-
 | Route | Auth |
 |---|---|
 | `GET /health` | open |
 | `GET /v1/document-ids` | Bearer |
 | `POST /v1/search` | Bearer |
 
+### Local curl
+
+```bash
+curl -sS http://127.0.0.1:8081/health
+
+curl -sS http://127.0.0.1:8081/v1/document-ids \
+  -H "Authorization: Bearer $CORPUS_API_KEY"
+
+curl -sS http://127.0.0.1:8081/v1/search \
+  -H "Authorization: Bearer $CORPUS_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"why is bank proof required","k":4}'
+```
+
+### Production curl (Render)
+
+```bash
+export CORPUS_API_KEY='…'   # same secret as the onb-corpus service
+
+curl -sS https://onb-corpus.onrender.com/health
+
+curl -sS https://onb-corpus.onrender.com/v1/document-ids \
+  -H "Authorization: Bearer $CORPUS_API_KEY"
+
+curl -sS https://onb-corpus.onrender.com/v1/search \
+  -H "Authorization: Bearer $CORPUS_API_KEY" \
+  -H "content-type: application/json" \
+  -d '{"query":"why is bank proof required","k":4}'
+```
+
+Free-tier cold start can take a minute; `/health` may return before the index is ready (`"status":"ok"` with loading still in progress — retry `/v1/search` if you get 503).
+
 ## Render
 
-Web service on the **iPe** workspace (free plan is fine for Capstone):
+Live URL: **https://onb-corpus.onrender.com** (iPe workspace, free plan).
 
-- **Build:** `pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build`
-- **Start:** `PYTHONPATH=src python -m onb_corpus serve`
+| When | What runs |
+|---|---|
+| **Deploy / push to `main`** | Build: `pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build` (re-embeds the pack via the Capstone embeddings API, writes `index/`). Then start: `PYTHONPATH=src python -m onb_corpus serve`. |
+| **Cold start** (free spin-up after idle) | **Start only** — loads the index already built into the deploy slug. Does **not** re-run `onb_corpus build` or call embeddings for the whole corpus. |
+
+So: rebuild happens on **deploy**, not every wake-up. Changing documents or chunking needs a new deploy (or a manual rebuild + restart locally).
+
 - **Health check:** `/health`
-- **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_PEM` (full PEM text), `EMBEDDING_MODEL`, `CORPUS_API_KEY`
-- Free plan is 512Mi: no torch/reranker; mmap vectors; compact inverted keyword index; `/health` answers before the index finishes loading.
+- **Env:** `EMBEDDINGS_API_KEY`, `EMBEDDINGS_BASE_URL`, `EMBEDDINGS_CA_PEM` (full PEM text), `EMBEDDING_MODEL=bge-small-en-v1.5`, `CORPUS_API_KEY`
+- Free plan is 512Mi: no torch / sentence-transformers; mmap vectors; compact keyword index; `/health` answers before the index finishes loading.
 
 Point `copilot-svc` at the public URL with the same `CORPUS_API_KEY`:
 
 ```bash
-CORPUS_SEARCH_URL=https://onb-corpus-xxxx.onrender.com
+CORPUS_SEARCH_URL=https://onb-corpus.onrender.com
 CORPUS_API_KEY=…
 ```
+
+## Week 2 — local recall (not required for E2E)
+
+Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [docs/week2-retrieval.md](docs/week2-retrieval.md).
+
+```bash
+PYTHONPATH=src .venv/bin/python -m onb_corpus build
+PYTHONPATH=src .venv/bin/python -m onb_corpus recall --modes dense,keyword,hybrid --k 4,8
+# optional: pip install '.[rerank]' then --modes hybrid_rerank
+```
+
+Latest summary: [eval/results/summary.json](eval/results/summary.json) — **hybrid @ 800/120: hit@4 = 0.958, hit@8 = 1.0**. Rerank did not help hit@4.
 
 ## Regenerate memos
 

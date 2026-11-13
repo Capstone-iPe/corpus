@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 from collections import defaultdict
 from pathlib import Path
 
@@ -121,6 +122,9 @@ def _keyword_order(query: str, postings: dict[str, list[int]], n_rows: int) -> l
     return sorted(range(n_rows), key=lambda i: scores[i], reverse=True)
 
 
+MODES = ("dense", "keyword", "hybrid", "hybrid_rerank")
+
+
 class Index:
     """In-process hybrid search over a built index."""
 
@@ -138,27 +142,47 @@ class Index:
             if doc_id and doc_id not in held and "## Held" in str(row.get("text") or ""):
                 held[doc_id] = row
         self.held_by_id = held
-        self.reranker = _reranker() if rerank else None
+        self._want_rerank = rerank
+        self.reranker = None
         self.np = np
 
-    def search(self, query: str, k: int = 4) -> list[dict]:
-        query_vector = embed_texts([query])[0]
-        vector_order = self.np.argsort(-(self.vectors @ query_vector)).tolist()
-        keyword_order = _keyword_order(query, self.postings, len(self.rows))
+    def _ensure_reranker(self):
+        if self.reranker is None and self._want_rerank:
+            self.reranker = _reranker()
+            if self.reranker is None:
+                self._want_rerank = False
+        return self.reranker
+
+    def search(self, query: str, k: int = 4, mode: str = "hybrid") -> list[dict]:
+        if mode not in MODES:
+            raise ValueError(f"unknown mode {mode!r}; expected one of {MODES}")
+        n = len(self.rows)
+        if mode == "keyword":
+            order = _keyword_order(query, self.postings, n)
+        elif mode == "dense":
+            query_vector = embed_texts([query])[0]
+            order = self.np.argsort(-(self.vectors @ query_vector)).tolist()
+        else:
+            query_vector = embed_texts([query])[0]
+            vector_order = self.np.argsort(-(self.vectors @ query_vector)).tolist()
+            keyword_order = _keyword_order(query, self.postings, n)
+            order = merge(vector_order, keyword_order, self.bonus)
         pool = []
-        for row_id in merge(vector_order, keyword_order, self.bonus):
+        for row_id in order:
             row = self.rows[row_id]
             if row["in_force"]:
                 pool.append(row)
             if len(pool) == POOL:
                 break
-        if self.reranker is not None:
-            scores = self.reranker.predict([(query, search_text(row)) for row in pool])
-            order = sorted(range(len(pool)), key=lambda i: float(scores[i]), reverse=True)
-            pool = [pool[i] for i in order]
+        if mode == "hybrid_rerank":
+            reranker = self._ensure_reranker()
+            if reranker is not None:
+                scores = reranker.predict([(query, search_text(row)) for row in pool])
+                ranked = sorted(range(len(pool)), key=lambda i: float(scores[i]), reverse=True)
+                pool = [pool[i] for i in ranked]
         found = one_per_document(pool, k)
         found = prefer_held(found, self.held_by_id)
-        log.info("search %s", [row["document_id"] for row in found])
+        log.info("search[%s] %s", mode, [row["document_id"] for row in found])
         return found
 
 
@@ -167,7 +191,13 @@ def _reranker():
         from sentence_transformers import CrossEncoder
         from onb_corpus.chunks import RERANK_MODEL
 
-        return CrossEncoder(RERANK_MODEL, local_files_only=True)
+        # Local eval may download once; Render never installs this extra.
+        local_only = os.environ.get("RERANK_LOCAL_ONLY", "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        return CrossEncoder(RERANK_MODEL, local_files_only=local_only)
     except Exception as exc:
         log.info("no reranker (%s)", exc)
         return None
@@ -185,12 +215,14 @@ def main() -> None:
     search_command.add_argument("query")
     search_command.add_argument("--index", type=Path, default=index_path())
     search_command.add_argument("--k", type=int, default=5)
+    search_command.add_argument("--mode", choices=MODES, default="hybrid")
 
     args = parser.parse_args()
     if args.command == "build":
         build(args.corpus, args.out)
         return
-    for row in Index(args.index, rerank=False).search(args.query, args.k):
+    want_rerank = args.mode == "hybrid_rerank"
+    for row in Index(args.index, rerank=want_rerank).search(args.query, args.k, mode=args.mode):
         print(f"{row['document_id']}  {row['path']}")
 
 

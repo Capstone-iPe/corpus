@@ -6,3 +6,5 @@ __pycache__/
 *.crt
 index/
 corpus-build/stats.json
+index-c400/
+index-c1200/

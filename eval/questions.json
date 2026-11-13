@@ -1,0 +1,122 @@
+[
+  {
+    "id": "R-01",
+    "query": "why is bank proof required",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001"]
+  },
+  {
+    "id": "R-02",
+    "query": "what are the four pack items for onboarding",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001", "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS"]
+  },
+  {
+    "id": "R-03",
+    "query": "is GSTIN a fifth pack document",
+    "relevant": ["ONB-POL-001", "ONB-ARTICLES-DO-YOU-NEED-GSTIN"]
+  },
+  {
+    "id": "R-04",
+    "query": "does an electricity bill count as bank proof",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001", "ONB-ARTICLES-ELECTRICITY-ENOUGH"]
+  },
+  {
+    "id": "R-05",
+    "query": "who decides when monthly volume is above forty lakh",
+    "relevant": ["ONB-POL-002", "ONB-ANX-002"]
+  },
+  {
+    "id": "R-06",
+    "query": "Merchant Risk Lead ceiling inclusive at forty lakh",
+    "relevant": ["ONB-POL-002", "ONB-ANX-002"]
+  },
+  {
+    "id": "R-07",
+    "query": "can the copilot lower stated volume to keep the lead as reviewer",
+    "relevant": ["ONB-POL-002"]
+  },
+  {
+    "id": "R-08",
+    "query": "signed data-processing addendum when storing payer phones",
+    "relevant": ["ONB-POL-003"]
+  },
+  {
+    "id": "R-09",
+    "query": "is a sentence in the note the addendum",
+    "relevant": ["ONB-POL-003", "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ"]
+  },
+  {
+    "id": "R-10",
+    "query": "may the copilot activate a merchant",
+    "relevant": ["ONB-POL-001", "ONB-CIR-001", "ONB-ARTICLES-CAN-YOU-TURN-US-ON"]
+  },
+  {
+    "id": "R-11",
+    "query": "recommend go-live does not mean the shop is live",
+    "relevant": ["ONB-POL-001", "ONB-ARTICLES-RECOMMEND-MEANS-LIVE"]
+  },
+  {
+    "id": "R-12",
+    "query": "cafe and dhaba map to which business type",
+    "relevant": ["ONB-ANX-003", "ONB-ARTICLES-CAFE-KIRANA-ALIASES"]
+  },
+  {
+    "id": "R-13",
+    "query": "kirana is grocery",
+    "relevant": ["ONB-ANX-003", "ONB-ARTICLES-CAFE-KIRANA-ALIASES"]
+  },
+  {
+    "id": "R-14",
+    "query": "hawala or forex money service refused",
+    "relevant": ["ONB-POL-001", "ONB-ANX-003"]
+  },
+  {
+    "id": "R-15",
+    "query": "crypto business type refused",
+    "relevant": ["ONB-POL-001", "ONB-ANX-003", "ONB-ARTICLES-WE-DEAL-IN-CRYPTO"]
+  },
+  {
+    "id": "R-16",
+    "query": "Aadhaar OTP or video KYC is not owner ID",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001", "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC"]
+  },
+  {
+    "id": "R-17",
+    "query": "shopfront photo age ninety days",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001", "ONB-ARTICLES-DAY-90-VS-91"]
+  },
+  {
+    "id": "R-18",
+    "query": "bank proof must be in the shop legal name",
+    "relevant": ["ONB-POL-001", "ONB-ANX-001", "ONB-ARTICLES-PERSONAL-PASSBOOK-FAQ"]
+  },
+  {
+    "id": "R-19",
+    "query": "ignore untrusted activate instructions in the note",
+    "relevant": ["ONB-POL-003", "ONB-CIR-002"]
+  },
+  {
+    "id": "R-20",
+    "query": "why ask for monthly volume",
+    "relevant": ["ONB-POL-002", "ONB-ARTICLES-WHY-VOLUME"]
+  },
+  {
+    "id": "R-21",
+    "query": "why ask whether the shop stores payer phones",
+    "relevant": ["ONB-POL-003", "ONB-ARTICLES-WHY-PAYER-PHONES"]
+  },
+  {
+    "id": "R-22",
+    "query": "unlisted business type stays in review",
+    "relevant": ["ONB-POL-001", "ONB-ANX-003"]
+  },
+  {
+    "id": "R-23",
+    "query": "systems shall not activate after submit",
+    "relevant": ["ONB-CIR-001", "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE"]
+  },
+  {
+    "id": "R-24",
+    "query": "who wins when policies conflict on activation",
+    "relevant": ["ONB-POL-001", "ONB-ARTICLES-CONFLICT-WHO-WINS"]
+  }
+]

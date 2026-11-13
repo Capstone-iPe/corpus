@@ -1,0 +1,1942 @@
+{
+  "index": "/Users/rupeshsasne/projects/Capstone-iPe/ipe-corpus/index",
+  "questions": "/Users/rupeshsasne/projects/Capstone-iPe/ipe-corpus/eval/questions.json",
+  "ks": [
+    4,
+    8
+  ],
+  "modes": [
+    {
+      "mode": "dense",
+      "n": 24,
+      "seconds": 3.99,
+      "hit_rate": {
+        "4": 0.7917,
+        "8": 0.8333
+      },
+      "mean_recall": {
+        "4": 0.4583,
+        "8": 0.625
+      },
+      "questions": [
+        {
+          "id": "R-01",
+          "query": "why is bank proof required",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-EVIDENCE-NEFT-SCREENSHOT-AS-BANK",
+            "ONB-EVIDENCE-PROPERTY-TAX-AS-BANK",
+            "ONB-EVIDENCE-WATER-BILL-AS-BANK",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-EVIDENCE-ELECTRICITY-BILL-AS-BANK",
+            "ONB-EVIDENCE-PAN-AS-BANK",
+            "ONB-EVIDENCE-CSV-OF-ACCOUNTS",
+            "ONB-EVIDENCE-ACCOUNT-AGGREGATOR-INSTEAD-OF-PASSBOOK"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-02",
+          "query": "what are the four pack items for onboarding",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-POL-001",
+            "ONB-SOP-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ANX-001",
+            "ONB-BRIEFINGS-RBI-KYC-MD",
+            "ONB-POL-004",
+            "ONB-BRIEFINGS-CSR-OUT-OF-SCOPE",
+            "ONB-ANX-003"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-03",
+          "query": "is GSTIN a fifth pack document",
+          "relevant": [
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-BRIEFINGS-CGST-2017-GSTIN-NOT-SLOT",
+            "ONB-TYPES-GROCERY",
+            "ONB-EVIDENCE-IEC-AS-FIFTH",
+            "ONB-EVIDENCE-GST-SCREENSHOT-AS-REGISTRATION",
+            "ONB-TERRITORIA-TELANGANA-UDYAM-NOT-FIFTH",
+            "ONB-POL-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-04",
+          "query": "does an electricity bill count as bank proof",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-EVIDENCE-ELECTRICITY-BILL-AS-BANK",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-TERRITORIA-MAHARASHTRA-ELECTRICITY-NOT-BANK",
+            "ONB-FILES-KIRANA-ELECTRICITY-PUNE",
+            "ONB-TERRITORIA-PUNE-EXCEPTION-UTILITY",
+            "ONB-FILES-HINGLISH-PLUS-ELECTRICITY",
+            "ONB-EVIDENCE-WATER-BILL-AS-BANK",
+            "ONB-EVIDENCE-GAS-BILL-AS-BANK"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.3333
+          }
+        },
+        {
+          "id": "R-05",
+          "query": "who decides when monthly volume is above forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002",
+            "ONB-VOLUME-FORTY-POINT-FIVE-LAKH",
+            "ONB-ARTICLES-PLEASE-TREAT-VOLUME-39",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-VOLUME-THIRTY-NINE-LAKH",
+            "ONB-VOLUME-ONE-LAKH-NOT-AUTO-LIVE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-06",
+          "query": "Merchant Risk Lead ceiling inclusive at forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-VOLUME-THIRTY-NINE-LAKH",
+            "ONB-VOLUME-FORTY-POINT-FIVE-LAKH",
+            "ONB-ANX-002",
+            "ONB-FILES-ABOVE-CEILING-HOP-IN-CHAT",
+            "ONB-VOLUME-HALF-CRORE",
+            "ONB-VOLUME-FORTY-LAKH-AND-ONE",
+            "ONB-POL-002"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-07",
+          "query": "can the copilot lower stated volume to keep the lead as reviewer",
+          "relevant": [
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-VOLUME-THIRTY-NINE-LAKH",
+            "ONB-VOLUME-TWO-REASONABLE-READINGS",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-VOLUME-SEASONAL-ESTIMATE-FORBIDDEN",
+            "ONB-VOLUME-FORTY-LAKH-AND-ONE",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-08",
+          "query": "signed data-processing addendum when storing payer phones",
+          "relevant": [
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-POL-003",
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ",
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ADDENDUM-UNSIGNED-DPA",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT",
+            "ONB-FILES-SAAS-ISO-NO-PHOTO",
+            "ONB-FILES-STAMP-UNSIGNED-DPA-PHONES-GROCERY",
+            "ONB-BRIEFINGS-DPDP-2023"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-09",
+          "query": "is a sentence in the note the addendum",
+          "relevant": [
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA",
+            "ONB-BRIEFINGS-CONTRACT-ACT-1872",
+            "ONB-ADDENDUM-VOICE-NOTE-NOT-DPA",
+            "ONB-POL-003",
+            "ONB-ADDENDUM-WET-SIGNATURE-BLANK-PAPER",
+            "ONB-ADDENDUM-GDPR-SENTENCE-NOT-DPA",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT",
+            "ONB-ARTICLES-WHY-PAYER-PHONES"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-10",
+          "query": "may the copilot activate a merchant",
+          "relevant": [
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-CIR-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-CIR-001",
+            "ONB-ACTIVATION-I-AM-THE-LEAD-IN-CHAT",
+            "ONB-POL-001",
+            "ONB-ACTIVATION-OWNER-CANNOT-ACTIVATE",
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-FILES-I-AM-LEAD-ACTIVATE-COMPLETE-RETAIL",
+            "ONB-INTEGRITY-PMLA-DOES-NOT-LET-CHATBOT-GO-LIVE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-11",
+          "query": "recommend go-live does not mean the shop is live",
+          "relevant": [
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ACTIVATION-RECOMMEND-IS-NOT-LIVE",
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-FILES-SALON-COMPLETE-PACK-STRETCH-RETAIL",
+            "ONB-FILES-UNLISTED-COPILOT-RECOMMENDS-LIVE",
+            "ONB-ARTICLES-ARE-WE-LIVE-IN-REVIEW",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-ACTIVATION-REVIEW-ID-IS-NOT-LIVE",
+            "ONB-PRIVACY-LIST-ALL-IN-REVIEW"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-12",
+          "query": "cafe and dhaba map to which business type",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-TYPES-RESTAURANT",
+            "ONB-TYPES-DHABA",
+            "ONB-ANX-003",
+            "ONB-TYPES-CAFE",
+            "ONB-TYPES-LOGISTICS-FLEET",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES",
+            "ONB-TYPES-TEMPLE-AS-TEMPLE",
+            "ONB-POL-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-13",
+          "query": "kirana is grocery",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-TYPES-KIRANA",
+            "ONB-TYPES-GROCERY",
+            "ONB-FILES-AGGREGATOR-PULL-OTHER-KIRANAS",
+            "ONB-FILES-KIRANA-ELECTRICITY-PUNE",
+            "ONB-TYPES-KIRANA-AGGREGATOR",
+            "ONB-BRIEFINGS-ESSENTIAL-COMMODITIES-NOT-WAIVER",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES",
+            "ONB-ANX-003"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-14",
+          "query": "hawala or forex money service refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-TYPES-MONEY-SERVICE",
+            "ONB-FILES-NGO-DONATIONS-NOT-HAWALA",
+            "ONB-FILES-FOREX-PLUS-SIM-CARDS",
+            "ONB-TYPES-PREPAID-WALLET-ISSUER",
+            "ONB-FILES-JSON-CRYPTO-GO-LIVE",
+            "ONB-BRIEFINGS-FEMA-1999",
+            "ONB-TYPES-HAWALA-DESK",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-15",
+          "query": "crypto business type refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-FILES-ARTICLE19-CRYPTO-PACK-WAIVER",
+            "ONB-FILES-JSON-CRYPTO-GO-LIVE",
+            "ONB-FILES-SECOND-REVIEW-ID-AFTER-REFUSAL",
+            "ONB-POL-001",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO",
+            "ONB-FILES-BELOW-ONE-LAKH-CRYPTO-STILL-REFUSED",
+            "ONB-TYPES-MLM-DIRECT-SELLING",
+            "ONB-ACTIVATION-REFUSED-GETS-NO-ID"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-16",
+          "query": "Aadhaar OTP or video KYC is not owner ID",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-BRIEFINGS-AADHAAR-ACT-NO-UIDAI",
+            "ONB-FILES-UIDAI-OTP-RESTAURANT-ACTIVATE",
+            "ONB-FILES-VIDEO-CIP-INSTEAD-OF-SHOPFRONT-AND-ID",
+            "ONB-EVIDENCE-LANDLORD-AADHAAR-NOT-OWNER-ID",
+            "ONB-ACTIVATION-UIDAI-CANNOT-ACTIVATE",
+            "ONB-PRIVACY-NO-READBACK-AADHAAR",
+            "ONB-IDENTITY-OVD-MAY-BE-OWNER-ID-FILE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.3333
+          }
+        },
+        {
+          "id": "R-17",
+          "query": "shopfront photo age ninety days",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-SHOPFRONT-DAY-NINETY-ONE-STALE",
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-SHOPFRONT-DAY-NINETY-INCLUSIVE",
+            "ONB-SHOPFRONT-LIMITATION-ACT-NO-EXTENSION",
+            "ONB-EVIDENCE-STREET-VIEW-AS-SHOPFRONT",
+            "ONB-FILES-DAY91-RESTAURANT-LIMITATION",
+            "ONB-SHOPFRONT-SUBMIT-DATE-NOT-PHOTO-EXIF-DEBATE",
+            "ONB-ANX-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-18",
+          "query": "bank proof must be in the shop legal name",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-PERSONAL-PASSBOOK-FAQ",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-IDENTITY-LEGAL-NAME-IS-THE-FORM-NAME",
+            "ONB-ARTICLES-WHY-LEGAL-NAME",
+            "ONB-EVIDENCE-PERSONAL-NAME-PASSBOOK",
+            "ONB-EVIDENCE-COOP-BANK-LEGAL-NAME",
+            "ONB-EVIDENCE-OD-LETTER-WITHOUT-SHOP-NAME",
+            "ONB-IDENTITY-TRADE-NAME-VERSUS-LEGAL-NAME",
+            "ONB-FAQ-001",
+            "ONB-EVIDENCE-ELECTRICITY-BILL-AS-BANK"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-19",
+          "query": "ignore untrusted activate instructions in the note",
+          "relevant": [
+            "ONB-CIR-002",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-INTEGRITY-NOTE-IGNORE-POLICY-ACTIVE",
+            "ONB-INTEGRITY-HINGLISH-IGNORE",
+            "ONB-CIR-002",
+            "ONB-INTEGRITY-WHITE-TEXT-IN-FILE",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-INTEGRITY-DO-NOT-CITE-NOT-IN-FORCE-DRAFTS-AS-BINDING",
+            "ONB-FILES-LAWYER-LETTER-SALON-ACTIVATE",
+            "ONB-INTEGRITY-PLEASE-THREE-TIMES"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-20",
+          "query": "why ask for monthly volume",
+          "relevant": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE",
+            "ONB-ARTICLES-PLEASE-TREAT-VOLUME-39",
+            "ONB-VOLUME-THIRTY-NINE-LAKH",
+            "ONB-VOLUME-SEASONAL-ESTIMATE-FORBIDDEN",
+            "ONB-VOLUME-SUNDAY-VOLUME",
+            "ONB-VOLUME-ONE-LAKH-NOT-AUTO-LIVE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-21",
+          "query": "why ask whether the shop stores payer phones",
+          "relevant": [
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ADDENDUM-PHONES-NOT-STORED-NO-DPA",
+            "ONB-FAQ-001",
+            "ONB-PRIVACY-NO-PAYER-PHONES-IN-TRANSCRIPT",
+            "ONB-PRIVACY-DO-NOT-STORE-PHONES-IN-TRANSCRIPT",
+            "ONB-POL-004",
+            "ONB-BRIEFINGS-DPDP-2023",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-22",
+          "query": "unlisted business type stays in review",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-TYPES-SAAS-COMPANY",
+            "ONB-TYPES-SALON",
+            "ONB-TYPES-CLINIC",
+            "ONB-FILES-UNLICENSED-PA-AS-SAAS",
+            "ONB-TYPES-ARMS-ACT-UNLISTED",
+            "ONB-PRIVACY-LIST-ALL-IN-REVIEW",
+            "ONB-TYPES-UNLICENSED-AGGREGATOR"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-23",
+          "query": "systems shall not activate after submit",
+          "relevant": [
+            "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE",
+            "ONB-CIR-001"
+          ],
+          "retrieved": [
+            "ONB-ACTIVATION-AFTER-SUBMIT-STILL-NO-ACTIVATE",
+            "ONB-CIR-001",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-ACTIVATION-NPCI-CANNOT-ACTIVATE",
+            "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE",
+            "ONB-INTEGRITY-FAKE-SYSTEM-TAGS",
+            "ONB-ACTIVATION-OWNER-CANNOT-ACTIVATE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-24",
+          "query": "who wins when policies conflict on activation",
+          "relevant": [
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-001",
+            "ONB-ACTIVATION-FEE-FOR-FASTER-LIVE",
+            "ONB-ACTIVATION-I-AM-THE-LEAD-IN-CHAT",
+            "ONB-FILES-DRAFT-COPILOT-MAY-ACTIVATE-RETRIEVED",
+            "ONB-CIR-001",
+            "ONB-POL-002"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "keyword",
+      "n": 24,
+      "seconds": 0.01,
+      "hit_rate": {
+        "4": 0.5833,
+        "8": 0.75
+      },
+      "mean_recall": {
+        "4": 0.3333,
+        "8": 0.4792
+      },
+      "questions": [
+        {
+          "id": "R-01",
+          "query": "why is bank proof required",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-LEGAL-NAME",
+            "ONB-BRIEFINGS-COMPANIES-ACT-2013",
+            "ONB-BRIEFINGS-FEMA-1999",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-ARTICLES-WHY-CITY",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-02",
+          "query": "what are the four pack items for onboarding",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-PF-STAFF-OUT",
+            "ONB-SOP-001",
+            "ONB-POL-001",
+            "ONB-BRIEFINGS-RBI-SIMPLIFIED-CDD",
+            "ONB-TYPES-GROCERY",
+            "ONB-TYPES-KIRANA-AGGREGATOR",
+            "ONB-VOLUME-THIRTY-NINE-LAKH",
+            "ONB-ANX-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-03",
+          "query": "is GSTIN a fifth pack document",
+          "relevant": [
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-EVIDENCE-GST-SCREENSHOT-AS-REGISTRATION",
+            "ONB-ANX-001",
+            "ONB-ANX-003",
+            "ONB-TYPES-ADVERTISING-AGENCY",
+            "ONB-TYPES-AGRI-INPUT-DEALER",
+            "ONB-TYPES-AIRPORT-KIOSK-AS-KIOSK",
+            "ONB-TYPES-AMUSEMENT-PARK",
+            "ONB-TYPES-ARCHITECT-FIRM"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-04",
+          "query": "does an electricity bill count as bank proof",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-EVIDENCE-GAS-BILL-AS-BANK",
+            "ONB-FILES-HINGLISH-PLUS-ELECTRICITY",
+            "ONB-TERRITORIA-MAHARASHTRA-ELECTRICITY-NOT-BANK",
+            "ONB-ANX-001",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-ARTICLES-WHY-CITY",
+            "ONB-EVIDENCE-ELECTRICITY-BILL-AS-BANK",
+            "ONB-FILES-KIRANA-ELECTRICITY-PUNE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-05",
+          "query": "who decides when monthly volume is above forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-ANX-002",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-002",
+            "ONB-FILES-CA-VOLUME-AND-ACTIVATE",
+            "ONB-FILES-EXACTLY-40-LAKH-RESTAURANT-COMPLETE",
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-06",
+          "query": "Merchant Risk Lead ceiling inclusive at forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-POL-002",
+            "ONB-ANX-002",
+            "ONB-FILES-ABOVE-CEILING-HOP-IN-CHAT",
+            "ONB-FILES-EXACTLY-40-LAKH-RESTAURANT-COMPLETE",
+            "ONB-VOLUME-HALF-CRORE",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-FILES-CONFLICT-SHOWN-AFTER-GSTR-ATTEMPT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-07",
+          "query": "can the copilot lower stated volume to keep the lead as reviewer",
+          "relevant": [
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ANX-002",
+            "ONB-SOP-001",
+            "ONB-EVIDENCE-CA-CERTIFICATE-AS-VOLUME-OR-BANK",
+            "ONB-VOLUME-FORTY-LAKH-AND-ONE",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE",
+            "ONB-POL-002",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-ARTICLES-WHY-VOLUME"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-08",
+          "query": "signed data-processing addendum when storing payer phones",
+          "relevant": [
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-ANX-001",
+            "ONB-BRIEFINGS-DPDP-2023",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ADDENDUM-ISO-NOT-DPA",
+            "ONB-ADDENDUM-UNSIGNED-DPA",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT",
+            "ONB-FILES-STAMP-UNSIGNED-DPA-PHONES-GROCERY"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-09",
+          "query": "is a sentence in the note the addendum",
+          "relevant": [
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ADDENDUM-GDPR-SENTENCE-NOT-DPA",
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA",
+            "ONB-POL-003",
+            "ONB-ANX-001",
+            "ONB-BRIEFINGS-CONTRACT-ACT-1872",
+            "ONB-BRIEFINGS-DPDP-2023"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-10",
+          "query": "may the copilot activate a merchant",
+          "relevant": [
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-CIR-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ANX-002",
+            "ONB-ANX-003",
+            "ONB-BRIEFINGS-CONTRACT-ACT-1872",
+            "ONB-BRIEFINGS-RBI-PA-GUIDELINES",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-CAN-I-MARK-PACK-COMPLETE",
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.3333
+          }
+        },
+        {
+          "id": "R-11",
+          "query": "recommend go-live does not mean the shop is live",
+          "relevant": [
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-FILES-DEMO-TEST-SHOP-COMPLETE-RESTAURANT",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-ACTIVATION-RECOMMEND-IS-NOT-LIVE",
+            "ONB-ACTIVATION-REVIEW-ID-IS-NOT-LIVE",
+            "ONB-FILES-CEO-WHATSAPP-PLUS-COMPLETE-GROCERY",
+            "ONB-FILES-EXACTLY-40-LAKH-RESTAURANT-COMPLETE",
+            "ONB-FILES-SUNDAY-COMPLETE-PACK-STILL-NO"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-12",
+          "query": "cafe and dhaba map to which business type",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-FAQ-001",
+            "ONB-TYPES-CAFE",
+            "ONB-TYPES-GAMBLING",
+            "ONB-TYPES-RESTAURANT",
+            "ONB-POL-001",
+            "ONB-ANX-003",
+            "ONB-BRIEFINGS-RBI-PA-GUIDELINES",
+            "ONB-EVIDENCE-FSSAI-AS-REGISTRATION"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-13",
+          "query": "kirana is grocery",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-BRIEFINGS-ESSENTIAL-COMMODITIES-NOT-WAIVER",
+            "ONB-BRIEFINGS-IRDAI-SEBI-BACKGROUND",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES",
+            "ONB-FILES-AGGREGATOR-PULL-OTHER-KIRANAS",
+            "ONB-FILES-KIRANA-ELECTRICITY-PUNE",
+            "ONB-TYPES-GROCERY",
+            "ONB-TYPES-KIRANA"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-14",
+          "query": "hawala or forex money service refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-BRIEFINGS-FEMA-1999",
+            "ONB-TYPES-DONATION-DESK",
+            "ONB-TYPES-GROCERY",
+            "ONB-TYPES-HAWALA-DESK",
+            "ONB-TYPES-PAYROLL-COMPANY",
+            "ONB-BRIEFINGS-DIGITAL-LENDING-OUT-OF-PACK",
+            "ONB-BRIEFINGS-RBI-PA-GUIDELINES"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-15",
+          "query": "crypto business type refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-BUSINESS-TYPE",
+            "ONB-TYPES-AIRPORT-KIOSK-AS-KIOSK",
+            "ONB-TYPES-AMUSEMENT-PARK",
+            "ONB-TYPES-BODY-SHOP",
+            "ONB-TYPES-CINEMA",
+            "ONB-TYPES-COLD-STORAGE",
+            "ONB-TYPES-CUSTOMS-BROKER",
+            "ONB-TYPES-DANCE-SCHOOL"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-16",
+          "query": "Aadhaar OTP or video KYC is not owner ID",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-FILES-VIDEO-CIP-INSTEAD-OF-SHOPFRONT-AND-ID",
+            "ONB-ANX-001",
+            "ONB-BRIEFINGS-AEPS-NO-AADHAAR-IN-CHAT",
+            "ONB-BRIEFINGS-RBI-KYC-MD",
+            "ONB-ACTIVATION-UIDAI-CANNOT-ACTIVATE",
+            "ONB-EVIDENCE-LANDLORD-AADHAAR-NOT-OWNER-ID",
+            "ONB-FILES-UIDAI-OTP-RESTAURANT-ACTIVATE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-17",
+          "query": "shopfront photo age ninety days",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-FILES-DAY91-RESTAURANT-LIMITATION",
+            "ONB-SHOPFRONT-LIMITATION-ACT-NO-EXTENSION",
+            "ONB-BRIEFINGS-LIMITATION-AND-GENERAL-CLAUSES",
+            "ONB-FAQ-001",
+            "ONB-EVIDENCE-ARCHITECT-RENDER-AS-SHOPFRONT",
+            "ONB-EVIDENCE-HEIC-SHOPFRONT",
+            "ONB-EVIDENCE-KITCHEN-INTERIOR-AS-SHOPFRONT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.3333
+          }
+        },
+        {
+          "id": "R-18",
+          "query": "bank proof must be in the shop legal name",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-PERSONAL-PASSBOOK-FAQ",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-FAQ-001",
+            "ONB-ANX-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ARTICLES-WHY-LEGAL-NAME",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-EVIDENCE-COOP-BANK-LEGAL-NAME",
+            "ONB-EVIDENCE-PAN-AS-BANK",
+            "ONB-EVIDENCE-PAYMENTS-BANK-LETTER"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.3333
+          }
+        },
+        {
+          "id": "R-19",
+          "query": "ignore untrusted activate instructions in the note",
+          "relevant": [
+            "ONB-CIR-002",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-CIR-002",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-INTEGRITY-HINGLISH-IGNORE",
+            "ONB-FAQ-001",
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA",
+            "ONB-FILES-HINGLISH-PLUS-ELECTRICITY",
+            "ONB-INTEGRITY-NOTE-IGNORE-POLICY-ACTIVE",
+            "ONB-INTEGRITY-WHITE-TEXT-IN-FILE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-20",
+          "query": "why ask for monthly volume",
+          "relevant": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-FAQ-001",
+            "ONB-ANX-002",
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-EVIDENCE-GSTR-AS-VOLUME",
+            "ONB-EVIDENCE-ITR-AS-VOLUME",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-POL-001",
+            "ONB-POL-002"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-21",
+          "query": "why ask whether the shop stores payer phones",
+          "relevant": [
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-BRIEFINGS-DPDP-2023",
+            "ONB-FAQ-001",
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA",
+            "ONB-ADDENDUM-PHONES-NOT-STORED-NO-DPA",
+            "ONB-ADDENDUM-UNSIGNED-DPA",
+            "ONB-POL-004",
+            "ONB-BRIEFINGS-IT-RULES-SECURITY-NO-ECHO",
+            "ONB-ARTICLES-WHY-LEGAL-NAME"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-22",
+          "query": "unlisted business type stays in review",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WE-ARE-A-SALON",
+            "ONB-ARTICLES-WHY-BUSINESS-TYPE",
+            "ONB-FILES-MR-ID-MEANS-LIVE-UNLISTED",
+            "ONB-FILES-NGO-DONATIONS-NOT-HAWALA",
+            "ONB-FILES-PAWN-UNREDEEMED-GOODS-RETAIL",
+            "ONB-FILES-UNLICENSED-PA-AS-SAAS",
+            "ONB-TYPES-CHIT-FUND",
+            "ONB-TYPES-GARAGE"
+          ],
+          "hit": {
+            "4": false,
+            "8": false
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.0
+          }
+        },
+        {
+          "id": "R-23",
+          "query": "systems shall not activate after submit",
+          "relevant": [
+            "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE",
+            "ONB-CIR-001"
+          ],
+          "retrieved": [
+            "ONB-POL-005",
+            "ONB-CIR-001",
+            "ONB-ACTIVATION-AFTER-SUBMIT-STILL-NO-ACTIVATE",
+            "ONB-INTEGRITY-PASTED-JSON-VERDICT",
+            "ONB-ANX-002",
+            "ONB-BRIEFINGS-PSS-ACT-2007",
+            "ONB-CIR-002",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-24",
+          "query": "who wins when policies conflict on activation",
+          "relevant": [
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-BRIEFINGS-CREDIT-ON-UPI-NOT-VERDICT",
+            "ONB-BRIEFINGS-RUPAY-SCHEME-NOT-WAIVER",
+            "ONB-FAQ-001",
+            "ONB-SOP-001",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-FILES-DRAFT-COPILOT-MAY-ACTIVATE-RETRIEVED"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "n": 24,
+      "seconds": 3.45,
+      "hit_rate": {
+        "4": 0.9583,
+        "8": 1.0
+      },
+      "mean_recall": {
+        "4": 0.6944,
+        "8": 0.8403
+      },
+      "questions": [
+        {
+          "id": "R-01",
+          "query": "why is bank proof required",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-ARTICLES-WHY-LEGAL-NAME",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-WHY-CITY",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-ANX-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN"
+          ],
+          "hit": {
+            "4": false,
+            "8": true
+          },
+          "recall": {
+            "4": 0.0,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-02",
+          "query": "what are the four pack items for onboarding",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-POL-001",
+            "ONB-ANX-001",
+            "ONB-SOP-001",
+            "ONB-ARTICLES-PF-STAFF-OUT",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ANX-003",
+            "ONB-POL-005",
+            "ONB-BRIEFINGS-RBI-SIMPLIFIED-CDD"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-03",
+          "query": "is GSTIN a fifth pack document",
+          "relevant": [
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-EVIDENCE-GST-SCREENSHOT-AS-REGISTRATION",
+            "ONB-ANX-001",
+            "ONB-ANX-003",
+            "ONB-ARTICLES-DO-YOU-NEED-GSTIN",
+            "ONB-POL-001",
+            "ONB-TYPES-BLOOD-BANK",
+            "ONB-TYPES-AYURVEDIC-CLINIC",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-04",
+          "query": "does an electricity bill count as bank proof",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-ARTICLES-WHY-CITY",
+            "ONB-EVIDENCE-ELECTRICITY-BILL-AS-BANK",
+            "ONB-ANX-001",
+            "ONB-EVIDENCE-GAS-BILL-AS-BANK",
+            "ONB-FILES-HINGLISH-PLUS-ELECTRICITY",
+            "ONB-TERRITORIA-MAHARASHTRA-ELECTRICITY-NOT-BANK",
+            "ONB-FAQ-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-05",
+          "query": "who decides when monthly volume is above forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-POL-002",
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-ANX-002",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-ARTICLES-PLEASE-TREAT-VOLUME-39",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-VOLUME-FORTY-POINT-FIVE-LAKH"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-06",
+          "query": "Merchant Risk Lead ceiling inclusive at forty lakh",
+          "relevant": [
+            "ONB-ANX-002",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ANX-002",
+            "ONB-POL-002",
+            "ONB-VOLUME-INCLUSIVE-FORTY-LAKH",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-FILES-ABOVE-CEILING-HOP-IN-CHAT",
+            "ONB-VOLUME-HALF-CRORE",
+            "ONB-VOLUME-FORTY-POINT-FIVE-LAKH",
+            "ONB-FILES-EXACTLY-40-LAKH-RESTAURANT-COMPLETE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-07",
+          "query": "can the copilot lower stated volume to keep the lead as reviewer",
+          "relevant": [
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002",
+            "ONB-ANX-002",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-VOLUME-PLEASE-TREAT-AS-THIRTY-NINE",
+            "ONB-SOP-001",
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-POL-005"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-08",
+          "query": "signed data-processing addendum when storing payer phones",
+          "relevant": [
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ",
+            "ONB-POL-003",
+            "ONB-POL-004",
+            "ONB-BRIEFINGS-DPDP-2023",
+            "ONB-ADDENDUM-UNSIGNED-DPA",
+            "ONB-ANX-001",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-09",
+          "query": "is a sentence in the note the addendum",
+          "relevant": [
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-POL-003",
+            "ONB-ANX-001",
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA",
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-BRIEFINGS-CONTRACT-ACT-1872",
+            "ONB-ADDENDUM-GDPR-SENTENCE-NOT-DPA",
+            "ONB-FILES-DPA-NOTE-PLUS-PHONES-RESTAURANT",
+            "ONB-ARTICLES-UNSIGNED-ADDENDUM-FAQ"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-10",
+          "query": "may the copilot activate a merchant",
+          "relevant": [
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-CIR-001",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-CAN-YOU-TURN-US-ON",
+            "ONB-POL-001",
+            "ONB-CIR-001",
+            "ONB-ANX-002",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-ANX-003",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-CONFLICT-WHO-WINS"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-11",
+          "query": "recommend go-live does not mean the shop is live",
+          "relevant": [
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-RECOMMEND-MEANS-LIVE",
+            "ONB-ACTIVATION-RECOMMEND-IS-NOT-LIVE",
+            "ONB-CIR-001",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-FILES-DEMO-TEST-SHOP-COMPLETE-RESTAURANT",
+            "ONB-ACTIVATION-REVIEW-ID-IS-NOT-LIVE",
+            "ONB-ARTICLES-ARE-WE-LIVE-IN-REVIEW",
+            "ONB-ANX-003"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-12",
+          "query": "cafe and dhaba map to which business type",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-POL-001",
+            "ONB-TYPES-RESTAURANT",
+            "ONB-TYPES-CAFE",
+            "ONB-FAQ-001",
+            "ONB-TYPES-DHABA",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES",
+            "ONB-TYPES-LOGISTICS-FLEET"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-13",
+          "query": "kirana is grocery",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-CAFE-KIRANA-ALIASES",
+            "ONB-POL-001",
+            "ONB-TYPES-GROCERY",
+            "ONB-BRIEFINGS-ESSENTIAL-COMMODITIES-NOT-WAIVER",
+            "ONB-TYPES-KIRANA",
+            "ONB-FILES-AGGREGATOR-PULL-OTHER-KIRANAS",
+            "ONB-FILES-KIRANA-ELECTRICITY-PUNE"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-14",
+          "query": "hawala or forex money service refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-ARE-WE-LIVE-REFUSED",
+            "ONB-TYPES-HAWALA-DESK",
+            "ONB-FILES-NGO-DONATIONS-NOT-HAWALA",
+            "ONB-FILES-FOREX-PLUS-SIM-CARDS",
+            "ONB-BRIEFINGS-FEMA-1999",
+            "ONB-TYPES-DONATION-DESK",
+            "ONB-TYPES-PAYROLL-COMPANY"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-15",
+          "query": "crypto business type refused",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-BUSINESS-TYPE",
+            "ONB-POL-001",
+            "ONB-ANX-003",
+            "ONB-FILES-SECOND-REVIEW-ID-AFTER-REFUSAL",
+            "ONB-FILES-JSON-CRYPTO-GO-LIVE",
+            "ONB-ARTICLES-WE-DEAL-IN-CRYPTO",
+            "ONB-TYPES-AIRPORT-KIOSK-AS-KIOSK",
+            "ONB-ARTICLES-ARE-WE-LIVE-REFUSED"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-16",
+          "query": "Aadhaar OTP or video KYC is not owner ID",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-AADHAAR-OTP-VIDEO-KYC",
+            "ONB-ANX-001",
+            "ONB-FILES-VIDEO-CIP-INSTEAD-OF-SHOPFRONT-AND-ID",
+            "ONB-FILES-UIDAI-OTP-RESTAURANT-ACTIVATE",
+            "ONB-BRIEFINGS-AADHAAR-ACT-NO-UIDAI",
+            "ONB-EVIDENCE-LANDLORD-AADHAAR-NOT-OWNER-ID",
+            "ONB-ACTIVATION-UIDAI-CANNOT-ACTIVATE",
+            "ONB-PRIVACY-NO-READBACK-AADHAAR"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-17",
+          "query": "shopfront photo age ninety days",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-DAY-90-VS-91",
+            "ONB-ANX-001",
+            "ONB-FILES-DAY91-RESTAURANT-LIMITATION",
+            "ONB-SHOPFRONT-LIMITATION-ACT-NO-EXTENSION",
+            "ONB-SHOPFRONT-DAY-NINETY-ONE-STALE",
+            "ONB-SHOPFRONT-DAY-NINETY-INCLUSIVE",
+            "ONB-BRIEFINGS-LIMITATION-AND-GENERAL-CLAUSES",
+            "ONB-EVIDENCE-ARCHITECT-RENDER-AS-SHOPFRONT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.6667,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-18",
+          "query": "bank proof must be in the shop legal name",
+          "relevant": [
+            "ONB-ANX-001",
+            "ONB-ARTICLES-PERSONAL-PASSBOOK-FAQ",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-LEGAL-NAME",
+            "ONB-FAQ-001",
+            "ONB-ARTICLES-WHY-FOUR-PACK-ITEMS",
+            "ONB-ANX-001",
+            "ONB-EVIDENCE-COOP-BANK-LEGAL-NAME",
+            "ONB-ARTICLES-PERSONAL-PASSBOOK-FAQ",
+            "ONB-EVIDENCE-PERSONAL-NAME-PASSBOOK",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.3333,
+            "8": 0.6667
+          }
+        },
+        {
+          "id": "R-19",
+          "query": "ignore untrusted activate instructions in the note",
+          "relevant": [
+            "ONB-CIR-002",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-CIR-002",
+            "ONB-POL-003",
+            "ONB-FILES-PERMITTED-COMPLETE-NOTE-SAYS-ACTIVE",
+            "ONB-INTEGRITY-NOTE-IGNORE-POLICY-ACTIVE",
+            "ONB-CIR-001",
+            "ONB-INTEGRITY-HINGLISH-IGNORE",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-ADDENDUM-NOTE-IS-NOT-DPA"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-20",
+          "query": "why ask for monthly volume",
+          "relevant": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-WHY-VOLUME",
+            "ONB-POL-002",
+            "ONB-ANX-002",
+            "ONB-FAQ-001",
+            "ONB-EVIDENCE-ITR-AS-VOLUME",
+            "ONB-ARTICLES-ELECTRICITY-ENOUGH",
+            "ONB-ANX-001",
+            "ONB-ARTICLES-PLEASE-TREAT-VOLUME-39"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-21",
+          "query": "why ask whether the shop stores payer phones",
+          "relevant": [
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-POL-003"
+          ],
+          "retrieved": [
+            "ONB-FAQ-001",
+            "ONB-POL-004",
+            "ONB-ARTICLES-WHY-PAYER-PHONES",
+            "ONB-ADDENDUM-PHONES-NOT-STORED-NO-DPA",
+            "ONB-BRIEFINGS-DPDP-2023",
+            "ONB-BRIEFINGS-IT-RULES-SECURITY-NO-ECHO",
+            "ONB-PRIVACY-NO-PAYER-PHONES-IN-TRANSCRIPT",
+            "ONB-PRIVACY-DO-NOT-STORE-PHONES-IN-TRANSCRIPT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-22",
+          "query": "unlisted business type stays in review",
+          "relevant": [
+            "ONB-ANX-003",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ANX-003",
+            "ONB-ARTICLES-WHY-BUSINESS-TYPE",
+            "ONB-FILES-UNLICENSED-PA-AS-SAAS",
+            "ONB-TYPES-CLINIC",
+            "ONB-FILES-MR-ID-MEANS-LIVE-UNLISTED",
+            "ONB-FILES-UNLISTED-COPILOT-RECOMMENDS-LIVE",
+            "ONB-ARTICLES-WE-ARE-A-SALON",
+            "ONB-ARTICLES-ARE-WE-LIVE-IN-REVIEW"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 0.5
+          }
+        },
+        {
+          "id": "R-23",
+          "query": "systems shall not activate after submit",
+          "relevant": [
+            "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE",
+            "ONB-CIR-001"
+          ],
+          "retrieved": [
+            "ONB-CIR-001",
+            "ONB-POL-005",
+            "ONB-ACTIVATION-AFTER-SUBMIT-STILL-NO-ACTIVATE",
+            "ONB-ARTICLES-WHY-THEN-SUBMIT-WITH-ACTIVATION",
+            "ONB-ARTICLES-ALREADY-SUBMITTED-ACTIVATE",
+            "ONB-POL-001",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-ARTICLES-WHY-IS-NOT-SUBMIT"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 0.5,
+            "8": 1.0
+          }
+        },
+        {
+          "id": "R-24",
+          "query": "who wins when policies conflict on activation",
+          "relevant": [
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-001"
+          ],
+          "retrieved": [
+            "ONB-ARTICLES-CONFLICT-WHO-WINS",
+            "ONB-POL-001",
+            "ONB-CIR-001",
+            "ONB-VOLUME-CONFLICT-SHOWN-NOT-RESOLVED",
+            "ONB-ACTIVATION-COPILOT-CANNOT-ACTIVATE",
+            "ONB-FILES-DRAFT-COPILOT-MAY-ACTIVATE-RETRIEVED",
+            "ONB-POL-002",
+            "ONB-SOP-001"
+          ],
+          "hit": {
+            "4": true,
+            "8": true
+          },
+          "recall": {
+            "4": 1.0,
+            "8": 1.0
+          }
+        }
+      ]
+    }
+  ]
+}

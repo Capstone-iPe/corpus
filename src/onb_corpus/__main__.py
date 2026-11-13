@@ -2,12 +2,12 @@
 
   PYTHONPATH=src python -m onb_corpus build
   PYTHONPATH=src python -m onb_corpus search "why is bank proof required"
+  PYTHONPATH=src python -m onb_corpus recall
   PYTHONPATH=src python -m onb_corpus serve
 """
 
 from __future__ import annotations
 
-import argparse
 import logging
 import os
 import sys
@@ -26,11 +26,19 @@ def serve() -> None:
 def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv:
-        print("usage: python -m onb_corpus {build,search,serve} ...", file=sys.stderr)
+        print(
+            "usage: python -m onb_corpus {build,search,recall,serve} ...",
+            file=sys.stderr,
+        )
         raise SystemExit(2)
     if argv[0] == "serve":
         logging.basicConfig(level=logging.INFO, format="%(message)s")
         serve()
+        return
+    if argv[0] == "recall":
+        from onb_corpus.recall import main as recall_main
+
+        recall_main(argv[1:])
         return
     sys.argv = [sys.argv[0], *argv]
     index_main()

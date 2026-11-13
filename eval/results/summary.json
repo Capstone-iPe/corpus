@@ -1,0 +1,66 @@
+{
+  "question_set": "eval/questions.json",
+  "n": 24,
+  "metrics": {
+    "hit_rate@k": "fraction of questions with at least one gold document_id in the top-k unique docs",
+    "mean_recall@k": "mean over questions of |retrieved∩gold|/|gold| at cutoff k"
+  },
+  "chunking": [
+    {
+      "setting": "400/60",
+      "chunks": 2667,
+      "mode": "hybrid",
+      "hit_rate": {"4": 0.875, "8": 0.9583},
+      "mean_recall": {"4": 0.5972, "8": 0.7292},
+      "source": "recall-c400.json"
+    },
+    {
+      "setting": "800/120",
+      "chunks": 1446,
+      "mode": "hybrid",
+      "hit_rate": {"4": 0.9583, "8": 1.0},
+      "mean_recall": {"4": 0.6944, "8": 0.8403},
+      "source": "recall.json"
+    },
+    {
+      "setting": "1200/180",
+      "chunks": 1063,
+      "mode": "hybrid",
+      "hit_rate": {"4": 0.9583, "8": 1.0},
+      "mean_recall": {"4": 0.7014, "8": 0.8403},
+      "source": "recall-c1200.json"
+    }
+  ],
+  "modes_at_800_120": [
+    {
+      "mode": "dense",
+      "hit_rate": {"4": 0.7917, "8": 0.8333},
+      "mean_recall": {"4": 0.4583, "8": 0.625},
+      "source": "recall.json"
+    },
+    {
+      "mode": "keyword",
+      "hit_rate": {"4": 0.5833, "8": 0.75},
+      "mean_recall": {"4": 0.3333, "8": 0.4792},
+      "source": "recall.json"
+    },
+    {
+      "mode": "hybrid",
+      "hit_rate": {"4": 0.9583, "8": 1.0},
+      "mean_recall": {"4": 0.6944, "8": 0.8403},
+      "source": "recall.json"
+    },
+    {
+      "mode": "hybrid_rerank",
+      "hit_rate": {"4": 0.8333, "8": 1.0},
+      "mean_recall": {"4": 0.5, "8": 0.7222},
+      "source": "recall-rerank.json",
+      "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    }
+  ],
+  "kept": {
+    "chunking": "800/120",
+    "retrieval": "hybrid (dense + keyword RRF + tier bonus)",
+    "rerank": "off in product; local CrossEncoder did not improve hit@4"
+  }
+}

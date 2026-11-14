@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>onb-corpus — how the index is built</title>
+  <meta name="description" content="Animated walkthrough of Capstone-iPe/onb-corpus: chunk the policy pack, embed with the Capstone API, store the index, and search with hybrid retrieval." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Capstone-iPe · Track B RAG</p>
+        <h1 class="brand">onb-corpus<span>Policy pack + search API for the iPe onboarding copilot</span></h1>
+        <p class="lede">
+          At build time the markdown pack is chunked, embedded through the Capstone API, and written to disk.
+          At search time only the query is embedded and matched against that index.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#build">Walk the build</a>
+          <a class="btn btn-ghost" href="https://github.com/Capstone-iPe/onb-corpus">GitHub repo</a>
+        </div>
+      </div>
+
+      <div class="pipeline" aria-hidden="true">
+        <svg id="pipeline-svg" viewBox="0 0 600 340" role="img">
+          <g class="paths"></g>
+          <rect class="node" x="30" y="40" width="100" height="60" rx="12" />
+          <text class="node-label" x="80" y="68" text-anchor="middle">corpus/</text>
+          <text class="node-sub" x="80" y="86" text-anchor="middle">~500 .md</text>
+
+          <rect class="node" x="200" y="40" width="100" height="60" rx="12" />
+          <text class="node-label" x="250" y="68" text-anchor="middle">chunks</text>
+          <text class="node-sub" x="250" y="86" text-anchor="middle">800 / 120</text>
+
+          <rect class="node" x="370" y="40" width="110" height="60" rx="12" />
+          <text class="node-label" x="425" y="68" text-anchor="middle">embed API</text>
+          <text class="node-sub" x="425" y="86" text-anchor="middle">bge-small</text>
+
+          <rect class="node" x="280" y="250" width="120" height="60" rx="12" />
+          <text class="node-label" x="340" y="278" text-anchor="middle">index/</text>
+          <text class="node-sub" x="340" y="296" text-anchor="middle">jsonl + npy</text>
+          <g class="dots"></g>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="build">
+      <div class="wrap">
+        <p class="section-kicker">Build algorithm</p>
+        <h2>Seven steps from markdown to index/</h2>
+        <p class="section-intro">
+          Same path locally and on Render’s deploy build.
+          Use the stepper (or ← → keys). Animations replay when you revisit a step.
+        </p>
+
+        <div class="stepper">
+          <nav class="step-nav" id="step-nav" aria-label="Build steps"></nav>
+          <div class="step-stage">
+            <div class="stage-head">
+              <h3 id="step-title">Step</h3>
+            </div>
+            <div class="stage-body">
+              <div class="stage-copy" id="step-copy"></div>
+              <div class="stage-viz" id="step-viz" aria-live="polite"></div>
+            </div>
+            <div class="stage-foot">
+              <button type="button" class="btn btn-ghost" id="prev-step">← Previous</button>
+              <span class="mono" id="step-counter" style="align-self:center;color:var(--mist)"></span>
+              <button type="button" class="btn btn-primary" id="next-step">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="search">
+      <div class="wrap">
+        <p class="section-kicker">Search (runtime)</p>
+        <h2>What happens on each query</h2>
+        <p class="section-intro">
+          The FastAPI service loads <code>chunks.jsonl</code> + <code>vectors.npy</code> once,
+          rebuilds keyword postings in memory, then serves hybrid search.
+        </p>
+        <div class="search-flow">
+          <article class="s-card">
+            <div class="tag">01</div>
+            <h3>Embed the query</h3>
+            <p>Same Capstone embeddings API + L2-normalize. Only this one string is embedded per request.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">02</div>
+            <h3>Dense rank</h3>
+            <p><code>vectors @ query</code> → cosine scores → argsort. Closest chunks first.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">03</div>
+            <h3>Keyword rank</h3>
+            <p>Token overlap against an inverted index. Exact ids and rare phrases.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">04</div>
+            <h3>Hybrid merge</h3>
+            <p>RRF fuse + folder tier bonus → one chunk per document → return passages.</p>
+          </article>
+        </div>
+        <p class="note">
+          Copilot calls <code>POST /v1/search</code> with Bearer <code>CORPUS_API_KEY</code>.
+          ONB still owns fields, files, and the verdict — this service only retrieves citations.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Source: <a href="https://github.com/Capstone-iPe/onb-corpus">Capstone-iPe/onb-corpus</a>
+      · Live API: <a href="https://onb-corpus.onrender.com/health">onb-corpus.onrender.com</a>
+      · Enable Pages: Settings → Pages → Deploy from branch → <code>main</code> / <code>/docs</code>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

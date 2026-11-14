@@ -2,6 +2,8 @@
 
 Policy pack and search API for the iPe onboarding copilot. ONB still decides fields, files, and the verdict; this service only returns passages for citation and explanation.
 
+**How the index is built (animated):** [GitHub Pages · docs/](https://capstone-ipe.github.io/onb-corpus/) — enable Pages on `main` / `/docs` if the link 404s.
+
 **500 documents** under `corpus/` (Track B range 500–2,000). Generators live in `corpus-build/`. The indexer only reads `corpus/**/*.md`.
 
 | Folder | What |

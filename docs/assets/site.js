@@ -221,37 +221,36 @@
   );
   cards.forEach((c) => io.observe(c));
 
-  // Hero flowing dots along SVG paths
-  const svg = document.getElementById("pipeline-svg");
-  if (svg) {
-    const paths = [
-      "M80 70 C150 70 170 70 250 70",
-      "M250 70 C320 70 340 70 420 70",
-      "M420 70 C490 70 510 120 510 170",
-      "M510 200 C510 250 420 280 340 280",
-    ];
-    paths.forEach((d, idx) => {
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("d", d);
-      path.setAttribute("class", "flow-path");
-      path.setAttribute("pathLength", "100");
-      svg.querySelector(".paths").appendChild(path);
-
-      const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      dot.setAttribute("r", "4.5");
-      dot.setAttribute("class", "flow-dot");
-      svg.querySelector(".dots").appendChild(dot);
-
-      const len = path.getTotalLength();
-      let t = idx * 0.22;
-      function tick() {
-        t = (t + 0.0045) % 1;
-        const pt = path.getPointAtLength(t * len);
+  // One continuous path; several dots share one clock so they stay evenly spaced.
+  const path = document.getElementById("pipeline-path");
+  const dotsLayer = document.getElementById("pipeline-dots");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (path && dotsLayer && !reduceMotion) {
+    const DOTS = 3;
+    const DURATION_MS = 5200;
+    const len = path.getTotalLength();
+    const dots = Array.from({ length: DOTS }, () => {
+      const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      c.setAttribute("r", "5");
+      c.setAttribute("class", "flow-dot");
+      dotsLayer.appendChild(c);
+      return c;
+    });
+    const started = performance.now();
+    function tick(now) {
+      const t = ((now - started) % DURATION_MS) / DURATION_MS;
+      dots.forEach((dot, i) => {
+        const u = (t + i / DOTS) % 1;
+        const pt = path.getPointAtLength(u * len);
         dot.setAttribute("cx", pt.x);
         dot.setAttribute("cy", pt.y);
-        requestAnimationFrame(tick);
-      }
+        // Soft fade at the loop seam so wrap isn't a hard pop.
+        const edge = Math.min(u, 1 - u);
+        const alpha = Math.min(1, edge / 0.06);
+        dot.setAttribute("opacity", String(0.35 + 0.65 * alpha));
+      });
       requestAnimationFrame(tick);
-    });
+    }
+    requestAnimationFrame(tick);
   }
 })();

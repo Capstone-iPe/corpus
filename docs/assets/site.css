@@ -233,19 +233,28 @@ code,
 
 .flow-path {
   fill: none;
-  stroke: rgba(94, 224, 181, 0.25);
-  stroke-width: 2;
-  stroke-dasharray: 6 8;
+  stroke: rgba(94, 224, 181, 0.35);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-dasharray: 5 9;
+  animation: dash-drift 14s linear infinite;
+}
+
+@keyframes dash-drift {
+  to {
+    stroke-dashoffset: -140;
+  }
 }
 
 .flow-dot {
   fill: var(--amber);
-  filter: drop-shadow(0 0 6px rgba(240, 179, 90, 0.7));
+  filter: drop-shadow(0 0 7px rgba(240, 179, 90, 0.75));
 }
 
-.flow-dot {
-  offset-path: path("M 70 80 C 140 80, 160 80, 230 80");
-  animation: none;
+@media (prefers-reduced-motion: reduce) {
+  .flow-path {
+    animation: none;
+  }
 }
 
 /* —— Sections —— */

@@ -211,6 +211,7 @@
   render(0);
 
   const cards = document.querySelectorAll(".s-card");
+  const barBlocks = document.querySelectorAll("[data-animate-bars]");
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -220,6 +221,7 @@
     { threshold: 0.2 }
   );
   cards.forEach((c) => io.observe(c));
+  barBlocks.forEach((b) => io.observe(b));
 
   // One continuous path; several dots share one clock so they stay evenly spaced.
   const path = document.getElementById("pipeline-path");

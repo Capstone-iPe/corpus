@@ -771,6 +771,119 @@ h2 {
   border-radius: 0 12px 12px 0;
 }
 
+.why-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 880px) {
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.why-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(26, 40, 35, 0.6);
+  padding: 1.25rem 1.3rem 1.1rem;
+}
+
+.why-card h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  color: var(--bright);
+}
+
+.why-lede {
+  margin: 0 0 1rem;
+  color: var(--mist);
+  font-size: 0.92rem;
+}
+
+.bars {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 0.9fr) 1.4fr auto;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 0.82rem;
+  color: var(--paper);
+}
+
+.bar-label em {
+  display: block;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--mist);
+  margin-top: 0.1rem;
+}
+
+.bar-track {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.bar-track > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--mint-dim), var(--mint));
+  transition: width 1s ease;
+}
+
+.bars.in .bar-track > span {
+  width: var(--w);
+}
+
+.bar-val {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--mist);
+  min-width: 3.2rem;
+  text-align: right;
+}
+
+.bar-row.pick .bar-label {
+  color: var(--bright);
+  font-weight: 700;
+}
+
+.bar-row.pick .bar-track > span {
+  background: linear-gradient(90deg, #c9852e, var(--amber));
+}
+
+.bar-row.pick .bar-val {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.bar-row.dim {
+  opacity: 0.72;
+}
+
+.why-note {
+  margin: 1rem 0 0;
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+
+.why-note strong {
+  color: var(--paper);
+}
+
 footer {
   padding: 2.5rem 0 3.5rem;
   border-top: 1px solid var(--line);

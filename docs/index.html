@@ -22,6 +22,7 @@
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#build">Walk the build</a>
+          <a class="btn btn-ghost" href="#why-800">Why 800/120</a>
           <a class="btn btn-ghost" href="https://github.com/Capstone-iPe/onb-corpus">GitHub repo</a>
         </div>
       </div>
@@ -82,6 +83,85 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="why-800">
+      <div class="wrap">
+        <p class="section-kicker">Local recall experiments</p>
+        <h2>Why we ship 800 / 120 + hybrid</h2>
+        <p class="section-intro">
+          From <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>:
+          24 fixed why/cite questions, gold <code>document_id</code>s, scored with hit@4 / hit@8
+          against a local index (Capstone <code>bge-small-en-v1.5</code>). Shop gold in analysis is not indexed here.
+        </p>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <h3>Chunk size bake-off</h3>
+            <p class="why-lede">Hybrid hit@4 on the same question set:</p>
+            <div class="bars" data-animate-bars>
+              <div class="bar-row">
+                <span class="bar-label">400 / 60 <em>2667 chunks</em></span>
+                <div class="bar-track"><span style="--w:87.5%"></span></div>
+                <span class="bar-val">0.875</span>
+              </div>
+              <div class="bar-row pick">
+                <span class="bar-label">800 / 120 <em>1446 chunks</em></span>
+                <div class="bar-track"><span style="--w:95.8%"></span></div>
+                <span class="bar-val">0.958</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">1200 / 180 <em>1063 chunks</em></span>
+                <div class="bar-track"><span style="--w:95.8%"></span></div>
+                <span class="bar-val">0.958</span>
+              </div>
+            </div>
+            <p class="why-note">
+              <strong>Keep 800/120.</strong> Smaller chunks diluted hit@4.
+              Larger chunks matched hit rates but did not beat 800/120 enough to justify rebuilding the deploy index.
+              Same size family as Assignment 05. hit@8 was 1.0 for both 800 and 1200.
+            </p>
+          </article>
+
+          <article class="why-card">
+            <h3>Mode bake-off (at 800/120)</h3>
+            <p class="why-lede">hit@4 — same index, different retrieval:</p>
+            <div class="bars" data-animate-bars>
+              <div class="bar-row">
+                <span class="bar-label">dense only</span>
+                <div class="bar-track"><span style="--w:79.2%"></span></div>
+                <span class="bar-val">0.792</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">keyword only</span>
+                <div class="bar-track"><span style="--w:58.3%"></span></div>
+                <span class="bar-val">0.583</span>
+              </div>
+              <div class="bar-row pick">
+                <span class="bar-label">hybrid</span>
+                <div class="bar-track"><span style="--w:95.8%"></span></div>
+                <span class="bar-val">0.958</span>
+              </div>
+              <div class="bar-row dim">
+                <span class="bar-label">hybrid + MiniLM rerank</span>
+                <div class="bar-track"><span style="--w:83.3%"></span></div>
+                <span class="bar-val">0.833</span>
+              </div>
+            </div>
+            <p class="why-note">
+              <strong>Keep hybrid</strong> (dense + keyword, RRF, folder tier bonus, one chunk per document).
+              ~+17 pts vs dense, ~+37 vs keyword.
+              <strong>Do not ship the CrossEncoder</strong> — it hurt hit@4 (0.83 vs 0.96), and free Render cannot host torch.
+            </p>
+          </article>
+        </div>
+
+        <p class="note">
+          Product path on Render: <strong>800/120 index</strong>, <strong>hybrid</strong>, <strong>no rerank</strong>.
+          Reproduce locally with <code>eval/recall.py</code> — details in
+          <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>.
+        </p>
       </div>
     </section>
 

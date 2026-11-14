@@ -216,16 +216,42 @@
 
   const cards = document.querySelectorAll(".s-card");
   const barBlocks = document.querySelectorAll("[data-animate-bars]");
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("in");
+  const motionOk = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+  const io =
+    motionOk && "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("in");
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+        )
+      : null;
+
+  cards.forEach((c) => {
+    if (io) {
+      c.classList.add("js-animate");
+      io.observe(c);
+      requestAnimationFrame(() => {
+        const rect = c.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) c.classList.add("in");
       });
-    },
-    { threshold: 0.2 }
-  );
-  cards.forEach((c) => io.observe(c));
-  barBlocks.forEach((b) => io.observe(b));
+      setTimeout(() => c.classList.add("in"), 1200);
+    }
+  });
+  barBlocks.forEach((b) => {
+    if (io) {
+      b.classList.add("js-animate");
+      io.observe(b);
+      // If already on screen (or IO stalls), still fill bars shortly after load.
+      requestAnimationFrame(() => {
+        const rect = b.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) b.classList.add("in");
+      });
+      setTimeout(() => b.classList.add("in"), 1200);
+    }
+  });
 
   // One continuous path; several dots share one clock so they stay evenly spaced.
   const path = document.getElementById("pipeline-path");

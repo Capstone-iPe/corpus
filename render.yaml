@@ -10,8 +10,8 @@ services:
     region: oregon
     branch: main
     autoDeploy: true
-    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build
-    startCommand: PYTHONPATH=src python -m onb_corpus serve
+    buildCommand: pip install -r requirements.txt && PYTHONPATH=src python -m index build
+    startCommand: PYTHONPATH=src uvicorn app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     # Free = 512Mi. Do not add sentence-transformers / torch.
     envVars:

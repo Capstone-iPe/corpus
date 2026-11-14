@@ -20,12 +20,12 @@ Primary Capstone numbers: **hit@4** and **hit@8** (reported as recall@k in the c
 ```bash
 cp .env.example .env   # EMBEDDINGS_* required
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-PYTHONPATH=src .venv/bin/python -m onb_corpus build
+PYTHONPATH=src .venv/bin/python -m index build
 PYTHONPATH=src .venv/bin/python eval/recall.py --modes dense,keyword,hybrid --k 4,8
 
 # optional chunking variants
-ONB_CHUNK=400 ONB_OVERLAP=60 PYTHONPATH=src .venv/bin/python -m onb_corpus build --out index-c400
-ONB_CHUNK=1200 ONB_OVERLAP=180 PYTHONPATH=src .venv/bin/python -m onb_corpus build --out index-c1200
+ONB_CHUNK=400 ONB_OVERLAP=60 PYTHONPATH=src .venv/bin/python -m index build --out index-c400
+ONB_CHUNK=1200 ONB_OVERLAP=180 PYTHONPATH=src .venv/bin/python -m index build --out index-c1200
 PYTHONPATH=src .venv/bin/python eval/recall.py --index index-c400 --modes hybrid --out eval/results/recall-c400.json
 PYTHONPATH=src .venv/bin/python eval/recall.py --index index-c1200 --modes hybrid --out eval/results/recall-c1200.json
 

@@ -32,7 +32,7 @@ def _load_index() -> None:
     try:
         if not (path / "chunks.jsonl").is_file() or not (path / "vectors.npy").is_file():
             raise RuntimeError(
-                f"index missing at {path}; run: PYTHONPATH=src python src/__main__.py build"
+                f"index missing at {path}; run: PYTHONPATH=src python -m index build"
             )
         loaded = Index(path, rerank=False)
         with _lock:

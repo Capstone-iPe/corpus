@@ -50,17 +50,17 @@ python3 -m venv .venv
 ## Build the index
 
 ```bash
-.venv/bin/python -m onb_corpus build
-.venv/bin/python -m onb_corpus search "why is bank proof required"
+PYTHONPATH=src .venv/bin/python -m index build
+PYTHONPATH=src .venv/bin/python -m index search "why is bank proof required"
 ```
 
 ## Run the search API
 
 ```bash
-.venv/bin/python -m onb_corpus serve
+PYTHONPATH=src .venv/bin/uvicorn app:app --host 0.0.0.0 --port 8081
 ```
 
-Binds `0.0.0.0:$PORT` (default 8081).
+Binds `0.0.0.0:$PORT` (default 8081 locally; Render sets `PORT`).
 
 | Route | Auth |
 |---|---|
@@ -106,7 +106,7 @@ Live URL: **https://onb-corpus.onrender.com** (iPe workspace, free plan).
 
 | When | What runs |
 |---|---|
-| **Deploy / push to `main`** | Build: `pip install -r requirements.txt && PYTHONPATH=src python -m onb_corpus build` (re-embeds the pack via the Capstone embeddings API, writes `index/`). Then start: `PYTHONPATH=src python -m onb_corpus serve`. |
+| **Deploy / push to `main`** | Build: `pip install -r requirements.txt && PYTHONPATH=src python -m index build` (re-embeds the pack via the Capstone embeddings API, writes `index/`). Then start: `PYTHONPATH=src uvicorn app:app --host 0.0.0.0 --port $PORT`. |
 | **Cold start** (free spin-up after idle) | **Start only** — loads the index already built into the deploy slug. Does **not** re-run build or call embeddings for the whole corpus. |
 
 So: rebuild happens on **deploy**, not every wake-up. Changing documents or chunking needs a new deploy (or a manual rebuild + restart locally).
@@ -128,7 +128,7 @@ CORPUS_API_KEY=…
 Chunking / hybrid / rerank experiments and **hit@4 / hit@8** on a fixed question set are **local only**. Render keeps hybrid without a CrossEncoder. Write-up: [eval/retrieval.md](eval/retrieval.md).
 
 ```bash
-PYTHONPATH=src .venv/bin/python -m onb_corpus build
+PYTHONPATH=src .venv/bin/python -m index build
 PYTHONPATH=src .venv/bin/python eval/recall.py --modes dense,keyword,hybrid --k 4,8
 # optional: pip install '.[rerank]' then --modes hybrid_rerank
 ```

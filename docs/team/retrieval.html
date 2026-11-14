@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>onb-corpus — retrieval &amp; eval</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+  <nav class="topnav wrap">
+    <a class="topnav-brand" href="../">onb-corpus</a>
+    <div class="topnav-links">
+      <a href="../">Evaluator</a>
+      <a href="./">Team notes</a>
+      <a href="build.html">Build</a>
+      <a href="retrieval.html" aria-current="page">Retrieval</a>
+    </div>
+  </nav>
+
+  <main>
+    <section style="border-top:none;padding-top:2rem">
+      <div class="wrap">
+        <p class="section-kicker">Team · modes</p>
+        <h2>Dense, keyword, hybrid, MiniLM rerank</h2>
+        <p class="section-intro">
+          Four ways we ranked the same 800/120 index on 24 fixed why/cite questions.
+        </p>
+        <div class="term-grid">
+          <article class="term-card">
+            <h3>Dense</h3>
+            <p><strong>Meaning search with embeddings.</strong> Query → vector; compare to stored chunk vectors with cosine similarity (dot product after L2-normalize). Good at paraphrase; weaker on rare exact tokens.</p>
+            <p class="mono mist">hit@4 = 0.792</p>
+          </article>
+          <article class="term-card">
+            <h3>Keyword</h3>
+            <p><strong>Word-overlap search.</strong> Tokenize the query; look up each term in an inverted index (<code>term → chunk ids</code>); score by hit count. Good at ids/phrases; weak when wording differs.</p>
+            <p class="mono mist">hit@4 = 0.583</p>
+          </article>
+          <article class="term-card">
+            <h3>Hybrid</h3>
+            <p><strong>Both, then merge.</strong> Dense order + keyword order fused with RRF, folder tier bonus, one chunk per document. Fixes each method’s misses.</p>
+            <p class="mono mist">hit@4 = 0.958 · ships on Render</p>
+          </article>
+          <article class="term-card">
+            <h3>Hybrid + MiniLM rerank</h3>
+            <p><strong>Second-stage cross-encoder</strong> (<code>ms-marco-MiniLM-L-6-v2</code>) rescores the hybrid pool as (query, text) pairs. On this set it <em>hurt</em> hit@4; needs torch — local probe only.</p>
+            <p class="mono mist">hit@4 = 0.833 · not shipped</p>
+          </article>
+        </div>
+        <div class="bars" data-animate-bars style="margin-top:1.5rem;max-width:36rem">
+          <div class="bar-row">
+            <span class="bar-label">dense</span>
+            <div class="bar-track"><span style="--w:79.2%"></span></div>
+            <span class="bar-val">0.792</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">keyword</span>
+            <div class="bar-track"><span style="--w:58.3%"></span></div>
+            <span class="bar-val">0.583</span>
+          </div>
+          <div class="bar-row pick">
+            <span class="bar-label">hybrid</span>
+            <div class="bar-track"><span style="--w:95.8%"></span></div>
+            <span class="bar-val">0.958</span>
+          </div>
+          <div class="bar-row dim">
+            <span class="bar-label">+ MiniLM</span>
+            <div class="bar-track"><span style="--w:83.3%"></span></div>
+            <span class="bar-val">0.833</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="section-kicker">Team · metrics</p>
+        <h2>hit@k and mean recall@k</h2>
+        <p class="section-intro">
+          Each question has a gold list of <code>document_id</code>s. Search returns ranked unique documents.
+        </p>
+        <div class="why-grid">
+          <article class="why-card">
+            <h3>hit@k</h3>
+            <p>Binary per question: is <strong>at least one</strong> gold id in the top k? Yes → 1, else 0. Average over 24 questions.</p>
+            <p class="why-note">Capstone primary: <strong>hit@4</strong> and <strong>hit@8</strong> — “did the right doc land in the shortlist?”</p>
+          </article>
+          <article class="why-card">
+            <h3>mean recall@k</h3>
+            <p>Graded: for each question, |retrieved ∩ gold| / |gold| at cutoff k, then average.</p>
+            <p class="why-note">Rewards recovering <em>more</em> of the gold set, not just one hit.</p>
+          </article>
+        </div>
+        <p class="note">
+          Example: gold = {POL-001, ANX-001}. Top‑4 includes both → hit@4 = 1 and recall@4 = 1.0 for that question.
+          Only POL-001 → still hit@4 = 1, but recall@4 = 0.5.
+        </p>
+      </div>
+    </section>
+
+    <section id="why-800">
+      <div class="wrap">
+        <p class="section-kicker">Team · chunking</p>
+        <h2>Why 800 / 120 (and not 1200)</h2>
+        <p class="section-intro">
+          Same hybrid mode; only chunk size changed.
+        </p>
+        <div class="bars" data-animate-bars style="max-width:36rem">
+          <div class="bar-row">
+            <span class="bar-label">400 / 60 <em>2667 chunks</em></span>
+            <div class="bar-track"><span style="--w:87.5%"></span></div>
+            <span class="bar-val">0.875</span>
+          </div>
+          <div class="bar-row pick">
+            <span class="bar-label">800 / 120 <em>1446 chunks</em></span>
+            <div class="bar-track"><span style="--w:95.8%"></span></div>
+            <span class="bar-val">0.958</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">1200 / 180 <em>1063 chunks</em></span>
+            <div class="bar-track"><span style="--w:95.8%"></span></div>
+            <span class="bar-val">0.958</span>
+          </div>
+        </div>
+        <p class="note">
+          <strong>400</strong> diluted hit@4. <strong>1200</strong> tied hit@4/@8 (mean recall@4 only +0.007) — not enough to force a full deploy re-embed.
+          Kept <strong>800/120</strong> (Assignment 05 size family).
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="section-kicker">Team · runtime</p>
+        <h2>What happens on each query</h2>
+        <div class="search-flow">
+          <article class="s-card">
+            <div class="tag">01</div>
+            <h3>Embed the query</h3>
+            <p>Same Capstone API + L2-normalize. Only this string is embedded per request.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">02</div>
+            <h3>Dense rank</h3>
+            <p><code>vectors @ query</code> → cosine → argsort.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">03</div>
+            <h3>Keyword rank</h3>
+            <p>Token overlap on in-memory postings.</p>
+          </article>
+          <article class="s-card">
+            <div class="tag">04</div>
+            <h3>Hybrid merge</h3>
+            <p>RRF + folder bonus → one chunk per doc → return passages.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="build.html">← Build walkthrough</a>
+      · <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>
+    </div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

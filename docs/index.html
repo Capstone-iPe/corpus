@@ -3,27 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>onb-corpus — how the index is built</title>
-  <meta name="description" content="Animated walkthrough of Capstone-iPe/onb-corpus: chunk the policy pack, embed with the Capstone API, store the index, and search with hybrid retrieval." />
+  <title>onb-corpus — Capstone Track B retrieval</title>
+  <meta name="description" content="iPe onb-corpus: policy pack and hybrid search API. Evaluator summary of what ships and recall results." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
+  <nav class="topnav wrap">
+    <a class="topnav-brand" href="./">onb-corpus</a>
+    <div class="topnav-links">
+      <a href="./" aria-current="page">Evaluator</a>
+      <a href="team/">Team notes</a>
+      <a href="https://github.com/Capstone-iPe/onb-corpus">GitHub</a>
+    </div>
+  </nav>
+
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Capstone-iPe · Track B RAG</p>
-        <h1 class="brand">onb-corpus<span>Policy pack + search API for the iPe onboarding copilot</span></h1>
+        <p class="eyebrow">Capstone-iPe · Track B · RAG</p>
+        <h1 class="brand">onb-corpus<span>Policy pack + search API for the merchant-onboarding copilot</span></h1>
         <p class="lede">
-          At build time the markdown pack is chunked, embedded through the Capstone API, and written to disk.
-          At search time only the query is embedded and matched against that index.
+          ~500 in-repo policy documents. Hosted embeddings (<code>bge-small-en-v1.5</code>).
+          Hybrid search over HTTP. The copilot cites passages; ONB still owns fields, files, and the verdict.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#build">Walk the build</a>
-          <a class="btn btn-ghost" href="#why-800">Why 800/120</a>
-          <a class="btn btn-ghost" href="https://github.com/Capstone-iPe/onb-corpus">GitHub repo</a>
+          <a class="btn btn-primary" href="https://onb-corpus.onrender.com/health">Live /health</a>
+          <a class="btn btn-ghost" href="https://github.com/Capstone-iPe/onb-corpus">Repository</a>
+          <a class="btn btn-ghost" href="team/">Team deep-dives →</a>
         </div>
       </div>
 
@@ -38,15 +47,12 @@
           <rect class="node" x="30" y="40" width="100" height="60" rx="12" />
           <text class="node-label" x="80" y="68" text-anchor="middle">corpus/</text>
           <text class="node-sub" x="80" y="86" text-anchor="middle">~500 .md</text>
-
           <rect class="node" x="200" y="40" width="100" height="60" rx="12" />
           <text class="node-label" x="250" y="68" text-anchor="middle">chunks</text>
           <text class="node-sub" x="250" y="86" text-anchor="middle">800 / 120</text>
-
           <rect class="node" x="370" y="40" width="110" height="60" rx="12" />
           <text class="node-label" x="425" y="68" text-anchor="middle">embed API</text>
           <text class="node-sub" x="425" y="86" text-anchor="middle">bge-small</text>
-
           <rect class="node" x="280" y="250" width="120" height="60" rx="12" />
           <text class="node-label" x="340" y="278" text-anchor="middle">index/</text>
           <text class="node-sub" x="340" y="296" text-anchor="middle">jsonl + npy</text>
@@ -57,84 +63,67 @@
   </header>
 
   <main>
-    <section id="build">
+    <section>
       <div class="wrap">
-        <p class="section-kicker">Build algorithm</p>
-        <h2>Seven steps from markdown to index/</h2>
-        <p class="section-intro">
-          Same path locally and on Render’s deploy build.
-          Use the stepper (or ← → keys). Animations replay when you revisit a step.
-        </p>
-
-        <div class="stepper">
-          <nav class="step-nav" id="step-nav" aria-label="Build steps"></nav>
-          <div class="step-stage">
-            <div class="stage-head">
-              <h3 id="step-title">Step</h3>
-            </div>
-            <div class="stage-body">
-              <div class="stage-copy" id="step-copy"></div>
-              <div class="stage-viz" id="step-viz" aria-live="polite"></div>
-            </div>
-            <div class="stage-foot">
-              <button type="button" class="btn btn-ghost" id="prev-step">← Previous</button>
-              <span class="mono" id="step-counter" style="align-self:center;color:var(--mist)"></span>
-              <button type="button" class="btn btn-primary" id="next-step">Next →</button>
-            </div>
-          </div>
+        <p class="section-kicker">What ships</p>
+        <h2>Product retrieval path</h2>
+        <div class="ship-grid">
+          <article class="ship-card">
+            <h3>Index</h3>
+            <p>Character chunks <strong>800 / overlap 120</strong> · ~1,446 chunks · built on every Render deploy</p>
+          </article>
+          <article class="ship-card">
+            <h3>Search</h3>
+            <p><strong>Hybrid</strong> (dense + keyword, RRF) · no CrossEncoder / no torch on free Render</p>
+          </article>
+          <article class="ship-card">
+            <h3>API</h3>
+            <p><code>GET /health</code> · Bearer <code>POST /v1/search</code> · <code>GET /v1/document-ids</code></p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="why-800">
+    <section>
       <div class="wrap">
-        <p class="section-kicker">Local recall experiments</p>
-        <h2>Why we ship 800 / 120 + hybrid</h2>
+        <p class="section-kicker">Local recall (fixed 24 why/cite questions)</p>
+        <h2>Headline numbers</h2>
         <p class="section-intro">
-          From <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>:
-          24 fixed why/cite questions, gold <code>document_id</code>s, scored with hit@4 / hit@8
-          against a local index (Capstone <code>bge-small-en-v1.5</code>). Shop gold in analysis is not indexed here.
+          Gold document ids scored with <strong>hit@4</strong> / <strong>hit@8</strong>
+          (share of questions where ≥1 gold id appears in the top‑k unique documents).
+          Full write-up:
+          <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>.
         </p>
+        <div class="metric-row">
+          <div class="metric">
+            <span class="metric-k">hybrid hit@4</span>
+            <span class="metric-v">0.958</span>
+          </div>
+          <div class="metric">
+            <span class="metric-k">hybrid hit@8</span>
+            <span class="metric-v">1.000</span>
+          </div>
+          <div class="metric">
+            <span class="metric-k">chunking kept</span>
+            <span class="metric-v sm">800 / 120</span>
+          </div>
+          <div class="metric">
+            <span class="metric-k">mode kept</span>
+            <span class="metric-v sm">hybrid</span>
+          </div>
+        </div>
 
-        <div class="why-grid">
+        <div class="why-grid" style="margin-top:1.75rem">
           <article class="why-card">
-            <h3>Chunk size bake-off</h3>
-            <p class="why-lede">Hybrid hit@4 on the same question set:</p>
+            <h3>Modes compared (hit@4)</h3>
             <div class="bars" data-animate-bars>
               <div class="bar-row">
-                <span class="bar-label">400 / 60 <em>2667 chunks</em></span>
-                <div class="bar-track"><span style="--w:87.5%"></span></div>
-                <span class="bar-val">0.875</span>
-              </div>
-              <div class="bar-row pick">
-                <span class="bar-label">800 / 120 <em>1446 chunks</em></span>
-                <div class="bar-track"><span style="--w:95.8%"></span></div>
-                <span class="bar-val">0.958</span>
-              </div>
-              <div class="bar-row">
-                <span class="bar-label">1200 / 180 <em>1063 chunks</em></span>
-                <div class="bar-track"><span style="--w:95.8%"></span></div>
-                <span class="bar-val">0.958</span>
-              </div>
-            </div>
-            <p class="why-note">
-              <strong>Keep 800/120.</strong> Smaller chunks diluted hit@4.
-              Larger chunks matched hit rates but did not beat 800/120 enough to justify rebuilding the deploy index.
-              Same size family as Assignment 05. hit@8 was 1.0 for both 800 and 1200.
-            </p>
-          </article>
-
-          <article class="why-card">
-            <h3>Mode bake-off (at 800/120)</h3>
-            <p class="why-lede">hit@4 — same index, different retrieval:</p>
-            <div class="bars" data-animate-bars>
-              <div class="bar-row">
-                <span class="bar-label">dense only</span>
+                <span class="bar-label">dense</span>
                 <div class="bar-track"><span style="--w:79.2%"></span></div>
                 <span class="bar-val">0.792</span>
               </div>
               <div class="bar-row">
-                <span class="bar-label">keyword only</span>
+                <span class="bar-label">keyword</span>
                 <div class="bar-track"><span style="--w:58.3%"></span></div>
                 <span class="bar-val">0.583</span>
               </div>
@@ -144,60 +133,63 @@
                 <span class="bar-val">0.958</span>
               </div>
               <div class="bar-row dim">
-                <span class="bar-label">hybrid + MiniLM rerank</span>
+                <span class="bar-label">hybrid + MiniLM</span>
                 <div class="bar-track"><span style="--w:83.3%"></span></div>
                 <span class="bar-val">0.833</span>
               </div>
             </div>
-            <p class="why-note">
-              <strong>Keep hybrid</strong> (dense + keyword, RRF, folder tier bonus, one chunk per document).
-              ~+17 pts vs dense, ~+37 vs keyword.
-              <strong>Do not ship the CrossEncoder</strong> — it hurt hit@4 (0.83 vs 0.96), and free Render cannot host torch.
-            </p>
+          </article>
+          <article class="why-card">
+            <h3>Chunk sizes (hybrid hit@4)</h3>
+            <div class="bars" data-animate-bars>
+              <div class="bar-row">
+                <span class="bar-label">400 / 60</span>
+                <div class="bar-track"><span style="--w:87.5%"></span></div>
+                <span class="bar-val">0.875</span>
+              </div>
+              <div class="bar-row pick">
+                <span class="bar-label">800 / 120</span>
+                <div class="bar-track"><span style="--w:95.8%"></span></div>
+                <span class="bar-val">0.958</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">1200 / 180</span>
+                <div class="bar-track"><span style="--w:95.8%"></span></div>
+                <span class="bar-val">0.958</span>
+              </div>
+            </div>
+            <p class="why-note">1200 tied hit rates but did not beat 800 enough to rebuild the deploy index.</p>
           </article>
         </div>
-
-        <p class="note">
-          Product path on Render: <strong>800/120 index</strong>, <strong>hybrid</strong>, <strong>no rerank</strong>.
-          Reproduce locally with <code>eval/recall.py</code> — details in
-          <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>.
-        </p>
       </div>
     </section>
 
-    <section id="search">
+    <section>
       <div class="wrap">
-        <p class="section-kicker">Search (runtime)</p>
-        <h2>What happens on each query</h2>
-        <p class="section-intro">
-          The FastAPI service loads <code>chunks.jsonl</code> + <code>vectors.npy</code> once,
-          rebuilds keyword postings in memory, then serves hybrid search.
-        </p>
-        <div class="search-flow">
-          <article class="s-card">
-            <div class="tag">01</div>
-            <h3>Embed the query</h3>
-            <p>Same Capstone embeddings API + L2-normalize. Only this one string is embedded per request.</p>
+        <p class="section-kicker">Terms</p>
+        <h2>Retrieval modes in one line each</h2>
+        <div class="term-grid">
+          <article class="term-card">
+            <h3>Dense</h3>
+            <p>Embed the query; rank chunks by vector similarity (cosine). Captures paraphrase.</p>
           </article>
-          <article class="s-card">
-            <div class="tag">02</div>
-            <h3>Dense rank</h3>
-            <p><code>vectors @ query</code> → cosine scores → argsort. Closest chunks first.</p>
+          <article class="term-card">
+            <h3>Keyword</h3>
+            <p>Match query tokens against an inverted index. Captures exact ids and rare phrases.</p>
           </article>
-          <article class="s-card">
-            <div class="tag">03</div>
-            <h3>Keyword rank</h3>
-            <p>Token overlap against an inverted index. Exact ids and rare phrases.</p>
+          <article class="term-card">
+            <h3>Hybrid</h3>
+            <p>Run both, fuse with RRF (+ folder bonus). What the live API uses.</p>
           </article>
-          <article class="s-card">
-            <div class="tag">04</div>
-            <h3>Hybrid merge</h3>
-            <p>RRF fuse + folder tier bonus → one chunk per document → return passages.</p>
+          <article class="term-card">
+            <h3>Hybrid + MiniLM rerank</h3>
+            <p>Re-score the hybrid pool with a cross-encoder. Local probe only — hurt hit@4 here; needs torch.</p>
           </article>
         </div>
         <p class="note">
-          Copilot calls <code>POST /v1/search</code> with Bearer <code>CORPUS_API_KEY</code>.
-          ONB still owns fields, files, and the verdict — this service only retrieves citations.
+          Metrics: <strong>hit@k</strong> = fraction of questions with ≥1 gold doc in top‑k.
+          <strong>mean recall@k</strong> = average fraction of each question’s gold set recovered in top‑k.
+          Deeper definitions and build internals → <a href="team/">team notes</a>.
         </p>
       </div>
     </section>
@@ -205,12 +197,11 @@
 
   <footer>
     <div class="wrap">
-      Source: <a href="https://github.com/Capstone-iPe/onb-corpus">Capstone-iPe/onb-corpus</a>
-      · Live API: <a href="https://onb-corpus.onrender.com/health">onb-corpus.onrender.com</a>
-      · Enable Pages: Settings → Pages → Deploy from branch → <code>main</code> / <code>/docs</code>
+      <a href="https://github.com/Capstone-iPe/onb-corpus">Capstone-iPe/onb-corpus</a>
+      · <a href="https://onb-corpus.onrender.com/health">onb-corpus.onrender.com</a>
+      · <a href="team/">Team notes</a>
     </div>
   </footer>
-
   <script src="assets/site.js"></script>
 </body>
 </html>

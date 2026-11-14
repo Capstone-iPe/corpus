@@ -61,6 +61,140 @@ code,
   margin-inline: auto;
 }
 
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 0;
+  flex-wrap: wrap;
+}
+
+.topnav-brand {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--bright);
+  text-decoration: none;
+}
+
+.topnav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+  font-size: 0.92rem;
+}
+
+.topnav-links a {
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.topnav-links a:hover,
+.topnav-links a[aria-current="page"] {
+  color: var(--mint);
+}
+
+.ship-grid,
+.term-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .ship-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .term-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ship-card,
+.term-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem 1.15rem;
+  background: rgba(26, 40, 35, 0.55);
+}
+
+.ship-card h3,
+.term-card h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  color: var(--bright);
+}
+
+.ship-card p,
+.term-card p {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.95rem;
+}
+
+.term-card p + p {
+  margin-top: 0.65rem;
+}
+
+.term-card .mist {
+  color: var(--amber);
+}
+
+a.term-card.link-card {
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  display: block;
+}
+
+a.term-card.link-card:hover {
+  border-color: rgba(94, 224, 181, 0.45);
+  transform: translateY(-2px);
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .metric-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.metric-k {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--mist);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metric-v {
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--mint);
+  line-height: 1;
+}
+
+.metric-v.sm {
+  font-size: 1.45rem;
+  color: var(--amber);
+}
+
 /* —— Hero —— */
 .hero {
   position: relative;

@@ -176,39 +176,43 @@
   const prevBtn = document.getElementById("prev-step");
   const nextBtn = document.getElementById("next-step");
   const counter = document.getElementById("step-counter");
-  let i = 0;
+  const hasStepper = nav && titleEl && copyEl && vizEl && prevBtn && nextBtn && counter;
 
-  function render(index) {
-    i = Math.max(0, Math.min(steps.length - 1, index));
-    const step = steps[i];
-    titleEl.textContent = step.title;
-    copyEl.innerHTML = step.html;
-    vizEl.innerHTML = step.viz;
-    counter.textContent = `${i + 1} / ${steps.length}`;
-    prevBtn.disabled = i === 0;
-    nextBtn.disabled = i === steps.length - 1;
-    [...nav.querySelectorAll("button")].forEach((btn, idx) => {
-      btn.setAttribute("aria-current", idx === i ? "true" : "false");
+  if (hasStepper) {
+    let i = 0;
+
+    function render(index) {
+      i = Math.max(0, Math.min(steps.length - 1, index));
+      const step = steps[i];
+      titleEl.textContent = step.title;
+      copyEl.innerHTML = step.html;
+      vizEl.innerHTML = step.viz;
+      counter.textContent = `${i + 1} / ${steps.length}`;
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === steps.length - 1;
+      [...nav.querySelectorAll("button")].forEach((btn, idx) => {
+        btn.setAttribute("aria-current", idx === i ? "true" : "false");
+      });
+    }
+
+    steps.forEach((step, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.innerHTML = `<span class="num">${String(idx + 1).padStart(2, "0")}</span>${step.title}`;
+      btn.addEventListener("click", () => render(idx));
+      nav.appendChild(btn);
     });
+
+    prevBtn.addEventListener("click", () => render(i - 1));
+    nextBtn.addEventListener("click", () => render(i + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") render(i + 1);
+      if (e.key === "ArrowLeft") render(i - 1);
+    });
+
+    render(0);
   }
-
-  steps.forEach((step, idx) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.innerHTML = `<span class="num">${String(idx + 1).padStart(2, "0")}</span>${step.title}`;
-    btn.addEventListener("click", () => render(idx));
-    nav.appendChild(btn);
-  });
-
-  prevBtn.addEventListener("click", () => render(i - 1));
-  nextBtn.addEventListener("click", () => render(i + 1));
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") render(i + 1);
-    if (e.key === "ArrowLeft") render(i - 1);
-  });
-
-  render(0);
 
   const cards = document.querySelectorAll(".s-card");
   const barBlocks = document.querySelectorAll("[data-animate-bars]");

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>onb-corpus — team notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+  <nav class="topnav wrap">
+    <a class="topnav-brand" href="../">onb-corpus</a>
+    <div class="topnav-links">
+      <a href="../">Evaluator</a>
+      <a href="./" aria-current="page">Team notes</a>
+      <a href="https://github.com/Capstone-iPe/onb-corpus">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <p class="eyebrow">Internal</p>
+      <h1 class="brand" style="font-size:clamp(2.2rem,5vw,3.4rem)">Team notes<span>Build algorithm, retrieval modes, metrics, and why we kept 800/120 hybrid</span></h1>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="term-grid">
+          <a class="term-card link-card" href="build.html">
+            <h3>Build walkthrough</h3>
+            <p>Seven animated steps: list markdown → metadata → chunk → search_text → embed → normalize → write index/</p>
+          </a>
+          <a class="term-card link-card" href="retrieval.html">
+            <h3>Retrieval &amp; eval</h3>
+            <p>Dense, keyword, hybrid, MiniLM rerank · hit@k / mean recall@k · why not 1200 · why no rerank</p>
+          </a>
+        </div>
+        <p class="note" style="margin-top:1.5rem">
+          Evaluator-facing summary stays on the <a href="../">home page</a>.
+          Source of truth for numbers:
+          <a href="https://github.com/Capstone-iPe/onb-corpus/blob/main/eval/retrieval.md">eval/retrieval.md</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">← Evaluator page</a></div>
+  </footer>
+</body>
+</html>

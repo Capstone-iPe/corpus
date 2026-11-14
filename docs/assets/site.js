@@ -101,34 +101,42 @@
           <li>One vector per string, then <strong>L2-normalize</strong> (divide by length so each vector has length 1)</li>
         </ul>
         <p>Why normalize? So similarity compares direction (meaning), not raw magnitude. After that, dot product = cosine similarity.</p>
-        <p>Tiny example: <code>[3,4]</code> has length 5 → becomes <code>[0.6, 0.8]</code>.</p>`,
+        <p>Tiny example: <code>[3,4]</code> has length √(9+16)=5 → divide by 5 → <code>[0.6, 0.8]</code> (still same direction, now length 1).</p>`,
       viz: `
         <div class="embed-batch">
           <div class="batch-row"><span>batch 1</span><div class="batch-bar"><span></span></div><span>16</span></div>
           <div class="batch-row"><span>batch 2</span><div class="batch-bar"><span></span></div><span>16</span></div>
           <div class="batch-row"><span>batch n</span><div class="batch-bar"><span></span></div><span>…</span></div>
         </div>
-        <div class="norm-demo" style="margin-top:1rem;min-height:120px">
-          <div class="norm-card">
-            <h4>Before</h4>
-            <div class="arrow-canvas">
-              <svg viewBox="0 0 120 100" aria-hidden="true">
-                <line x1="16" y1="84" x2="70" y2="20" stroke="#f0b35a" stroke-width="3"/>
-                <circle cx="70" cy="20" r="4" fill="#f0b35a"/>
-                <text x="76" y="24" fill="#9db5ab" font-size="10" font-family="IBM Plex Mono,monospace">[3,4]</text>
-              </svg>
-            </div>
-          </div>
-          <div class="norm-card">
-            <h4>After (length 1)</h4>
-            <div class="arrow-canvas">
-              <svg viewBox="0 0 120 100" aria-hidden="true">
-                <line x1="16" y1="84" x2="52" y2="42" stroke="#5ee0b5" stroke-width="3"/>
-                <circle cx="52" cy="42" r="4" fill="#5ee0b5"/>
-                <text x="58" y="46" fill="#9db5ab" font-size="10" font-family="IBM Plex Mono,monospace">[0.6,0.8]</text>
-              </svg>
-            </div>
-          </div>
+        <div class="norm-panel">
+          <svg class="norm-svg" viewBox="0 0 280 200" aria-hidden="true">
+            <!-- axes -->
+            <line x1="40" y1="170" x2="250" y2="170" stroke="rgba(157,181,171,.45)" stroke-width="1.5"/>
+            <line x1="40" y1="170" x2="40" y2="20" stroke="rgba(157,181,171,.45)" stroke-width="1.5"/>
+            <text x="246" y="186" fill="#9db5ab" font-size="11" font-family="IBM Plex Mono,monospace">x</text>
+            <text x="20" y="28" fill="#9db5ab" font-size="11" font-family="IBM Plex Mono,monospace">y</text>
+
+            <!-- unit circle (radius 30px = length 1 on this scale; 1 unit = 30px) -->
+            <circle cx="40" cy="170" r="30" fill="none" stroke="rgba(94,224,181,.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <text x="48" y="148" fill="#5ee0b5" font-size="9" font-family="IBM Plex Mono,monospace">unit circle</text>
+
+            <!-- before [3,4]: scale 30px/unit → tip at (40+90, 170-120) = (130, 50) -->
+            <line class="norm-before" x1="40" y1="170" x2="130" y2="50" stroke="#f0b35a" stroke-width="3" marker-end="url(#arrow-amber)"/>
+            <circle cx="130" cy="50" r="4" fill="#f0b35a"/>
+            <text x="138" y="46" fill="#f0b35a" font-size="11" font-family="IBM Plex Mono,monospace">[3, 4] len=5</text>
+
+            <!-- after [0.6,0.8]: tip at (40+18, 170-24) = (58, 146) on the unit circle -->
+            <line class="norm-after" x1="40" y1="170" x2="58" y2="146" stroke="#5ee0b5" stroke-width="3.5"/>
+            <circle cx="58" cy="146" r="4.5" fill="#5ee0b5"/>
+            <text x="66" y="138" fill="#5ee0b5" font-size="11" font-family="IBM Plex Mono,monospace">[0.6, 0.8] len=1</text>
+
+            <defs>
+              <marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#f0b35a"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="norm-caption">Same direction · shorter arrow lands on the unit circle</p>
         </div>`,
     },
     {
